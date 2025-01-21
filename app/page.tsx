@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import { Marquee } from "@/components/ui/marquee";
 import { Pricing } from "@/components/pricing";
+import { HeroPill } from "@/components/ui/hero-pill";
 
 // Add packages data
 const pricingPlans = [
@@ -269,10 +270,20 @@ export default function Home() {
 
   return (
     <div className="bg-black text-white min-h-screen">
+      {/* Hero Pill */}
+      <div className="flex justify-center pt-6">
+        <HeroPill
+          href="#"
+          label="24/7 Crisis Management Support Available"
+          announcement="🚨 Crisis Response"
+          className="bg-red-950/60 ring-red-500/20 hover:bg-red-900/60"
+        />
+      </div>
+
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pb-12">
+      <section className="relative h-[70vh]">
         <motion.header 
-          className="container mx-auto px-4 py-20"
+          className="container mx-auto px-4 pt-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}

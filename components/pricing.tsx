@@ -12,28 +12,28 @@ import { useState, useRef } from "react";
 import confetti from "canvas-confetti";
 import NumberFlow from "@number-flow/react";
 
-interface PricingPlan {
+interface PricingProps {
+  title?: string;
+  description?: string;
+  plans: Plan[];
+}
+
+interface Plan {
   name: string;
   price: string;
   yearlyPrice: string;
   period: string;
-  features: string[];
   description: string;
   buttonText: string;
   href: string;
   isPopular: boolean;
+  features: string[];
 }
 
-interface PricingProps {
-  plans: PricingPlan[];
-  title?: string;
-  description?: string;
+interface NumberFlowProps {
+  value: number;
+  format: Record<string, unknown>;
 }
-
-type TransformTiming = {
-  duration: number;
-  easing: string;
-};
 
 export function Pricing({
   plans,
@@ -104,37 +104,14 @@ export function Pricing({
         {plans.map((plan, index) => (
           <motion.div
             key={index}
-            initial={{ y: 50, opacity: 1 }}
-            whileInView={
-              isDesktop
-                ? {
-                    y: plan.isPopular ? -20 : 0,
-                    opacity: 1,
-                    x: index === 2 ? -30 : index === 0 ? 30 : 0,
-                    scale: index === 0 || index === 2 ? 0.94 : 1.0,
-                  }
-                : {}
-            }
-            viewport={{ once: true }}
-            transition={{
-              duration: 1.6,
-              type: "spring",
-              stiffness: 100,
-              damping: 30,
-              delay: 0.4,
-              opacity: { duration: 0.5 },
-            }}
             className={cn(
-              `rounded-2xl border-[1px] p-6 bg-zinc-900 text-center lg:flex lg:flex-col lg:justify-center relative`,
-              plan.isPopular ? "border-yellow-400 border-2" : "border-zinc-800",
-              "flex flex-col",
-              !plan.isPopular && "mt-5",
-              index === 0 || index === 2
-                ? "z-0 transform translate-x-0 translate-y-0 -translate-z-[50px] rotate-y-[10deg]"
-                : "z-10",
-              index === 0 && "origin-right",
-              index === 2 && "origin-left"
+              "relative rounded-2xl p-8",
+              "bg-zinc-900 border border-zinc-800",
+              plan.isPopular && "border-yellow-500/50 shadow-lg shadow-yellow-500/10"
             )}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
           >
             {plan.isPopular && (
               <div className="absolute top-0 right-0 bg-yellow-400 py-0.5 px-2 rounded-bl-xl rounded-tr-xl flex items-center">
@@ -161,11 +138,6 @@ export function Pricing({
                       maximumFractionDigits: 0,
                       useGrouping: true
                     }}
-                    transformTiming={{
-                      duration: 500,
-                      easing: "ease-out",
-                    }}
-                    willChange
                     className="font-variant-numeric: tabular-nums"
                   />
                 </span>

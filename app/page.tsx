@@ -1,7 +1,7 @@
 'use client';  // Required for Framer Motion in Next.js 13+
 
 import React, { useState } from 'react';
-import { ChevronRight, Shield, Users, AlertTriangle, Check, ArrowRight, Globe, Target, Command, MessageSquare } from 'lucide-react';
+import { ChevronRight, Command, Globe, MessageSquare, Shield, Target, Users } from "lucide-react";
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
@@ -683,7 +683,7 @@ export default function Home() {
           >
             <h2 className="text-4xl font-bold text-white mb-4">Facing a Crisis?</h2>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Don't wait until it's too late. Our crisis management team is available 24/7 to help you navigate through any challenge.
+              Don&apos;t wait until it&apos;s too late. Our crisis management team is available 24/7 to help you navigate through any challenge.
             </p>
             <button className="bg-white text-red-600 px-8 py-3 rounded-lg font-semibold text-lg hover:bg-red-50 transition-colors">
               Contact Crisis Team Now

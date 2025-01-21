@@ -6,81 +6,85 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import { Marquee } from "@/components/ui/marquee";
+import { Pricing } from "@/components/pricing";
 
 // Add packages data
-const packages = [
+const pricingPlans = [
   {
     name: "Strategic Partner",
-    price: "10,000",
+    price: "10000",
+    yearlyPrice: "96000",
+    period: "month",
     description: "Your strategic communications copilot for building and maintaining a strong reputation.",
+    buttonText: "Schedule Consultation",
+    href: "#consultation",
+    isPopular: false,
     features: [
-      {
-        title: "Strategic Communications",
-        items: [
-          "Unlimited strategic counsel",
-          "Monthly communications strategy sessions",
-          "Quarterly messaging refinement",
-          "Stakeholder mapping & analysis"
-        ]
-      },
-      {
-        title: "Risk Management",
-        items: [
-          "Monthly risk assessment",
-          "Basic media monitoring",
-          "Early warning system setup",
-          "Crisis response at preferential rates"
-        ]
-      },
-      {
-        title: "Training & Development",
-        items: [
-          "2 training sessions per month",
-          "Basic crisis simulation quarterly",
-          "Communications toolkit access",
-          "Best practices documentation"
-        ]
-      }
-    ],
-    cta: "Schedule Consultation"
+      "Unlimited strategic counsel",
+      "Monthly communications strategy sessions",
+      "Quarterly messaging refinement",
+      "Stakeholder mapping & analysis",
+      "Monthly risk assessment",
+      "Basic media monitoring",
+      "Early warning system setup",
+      "Crisis response at preferential rates",
+      "2 training sessions per month",
+      "Basic crisis simulation quarterly",
+      "Communications toolkit access",
+      "Best practices documentation"
+    ]
   },
   {
     name: "Command Center",
-    price: "18,000",
+    price: "18000",
+    yearlyPrice: "172800",
+    period: "month",
     description: "Full-spectrum communications partner with comprehensive crisis coverage.",
-    featured: true,
+    buttonText: "Talk to Crisis Team",
+    href: "#crisis-team",
+    isPopular: true,
     features: [
-      {
-        title: "Crisis Management",
-        items: [
-          "Unlimited crisis response coverage",
-          "24/7 crisis team access",
-          "War room activation",
-          "Stakeholder communications",
-          "Media response coordination"
-        ]
-      },
-      {
-        title: "Proactive Management",
-        items: [
-          "Everything in Strategic Partner",
-          "Proactive media relations",
-          "Political monitoring",
-          "Monthly C-suite training",
-          "Reputation audit & tracking"
-        ]
-      },
-      {
-        title: "Risk Prevention",
-        items: [
-          "Advanced crisis simulations",
-          "Monthly risk register updates",
-          "Competitor monitoring",
-          "Social media monitoring"
-        ]
-      }
-    ],
-    cta: "Talk to Crisis Team"
+      "Unlimited crisis response coverage",
+      "24/7 crisis team access",
+      "War room activation",
+      "Stakeholder communications",
+      "Media response coordination",
+      "Everything in Strategic Partner",
+      "Proactive media relations",
+      "Political monitoring",
+      "Monthly C-suite training",
+      "Reputation audit & tracking",
+      "Advanced crisis simulations",
+      "Monthly risk register updates",
+      "Competitor monitoring",
+      "Social media monitoring"
+    ]
+  },
+  {
+    name: "Enterprise Shield",
+    price: "35000",
+    yearlyPrice: "336000",
+    period: "month",
+    description: "Complete enterprise protection with dedicated teams and global coverage.",
+    buttonText: "Contact Enterprise Sales",
+    href: "#enterprise",
+    isPopular: false,
+    features: [
+      "Everything in Command Center",
+      "Dedicated crisis response team",
+      "Global media monitoring",
+      "Multiple war room capabilities",
+      "Cross-border crisis management",
+      "Executive protection services",
+      "Custom training programs",
+      "Unlimited crisis simulations",
+      "AI-powered sentiment analysis",
+      "Dedicated account strategist",
+      "Board-level advisory services",
+      "Customized reporting dashboard",
+      "Priority escalation protocols",
+      "International media relations"
+    ]
   }
 ];
 
@@ -317,7 +321,7 @@ export default function Home() {
       {/* Partners Marquee */}
       <Marquee 
         pauseOnHover={true}
-        speed={20}
+        speed={60}
         className="bg-black border-y border-zinc-800"
       >
         {Array(8).fill(null).map((_, index) => (
@@ -642,64 +646,11 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {packages.map((pkg) => (
-              <motion.div 
-                key={pkg.name}
-                className={`bg-zinc-900 rounded-xl p-8 relative ${
-                  pkg.featured ? 'border-2 border-yellow-400' : ''
-                }`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -5 }}
-                transition={{ duration: 0.3 }}
-              >
-                {pkg.featured && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-yellow-400 text-black px-4 py-1 rounded-full text-sm font-bold">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
-
-                <h3 className="text-2xl font-bold mb-2">{pkg.name}</h3>
-                <div className="mb-4">
-                  <span className="text-3xl font-bold">${pkg.price}</span>
-                  <span className="text-zinc-400">/month</span>
-                </div>
-                <p className="text-zinc-400 mb-8">{pkg.description}</p>
-
-                {pkg.features.map((feature, index) => (
-                  <div key={index} className="mb-8">
-                    <h4 className="text-lg font-semibold mb-4 text-yellow-400">
-                      {feature.title}
-                    </h4>
-                    <ul className="space-y-3">
-                      {feature.items.map((item) => (
-                        <li key={item} className="flex items-start">
-                          <Check className="text-yellow-400 mr-2" />
-                          <span className="text-zinc-200">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-
-                <motion.button 
-                  className={`w-full py-3 rounded-lg font-semibold mt-4 flex items-center justify-center ${
-                    pkg.featured 
-                      ? 'bg-yellow-400 text-black hover:bg-yellow-500'
-                      : 'border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black'
-                  }`}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  {pkg.cta}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </motion.button>
-              </motion.div>
-            ))}
-          </div>
+          <Pricing
+            title="Your Communications Copilot"
+            description="Strategic partnership packages designed to protect and enhance your reputation across all scenarios."
+            plans={pricingPlans}
+          />
         </motion.div>
       </section>
 

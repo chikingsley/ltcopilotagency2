@@ -203,7 +203,14 @@ const services = {
   }
 };
 
-const ServiceButton = ({ isActive, icon: Icon, title, onClick }) => {
+interface ServiceButtonProps {
+  isActive: boolean;
+  icon: React.ElementType;
+  title: string;
+  onClick: () => void;
+}
+
+const ServiceButton = ({ isActive, icon: Icon, title, onClick }: ServiceButtonProps) => {
   return (
     <motion.button
       onClick={onClick}

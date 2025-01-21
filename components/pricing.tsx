@@ -73,21 +73,13 @@ export function Pricing({
         <span className="ml-2 font-semibold text-zinc-300">
           Annual billing <span className="text-yellow-400">(Save 20%)</span>
         </span>
-        <button
+        <Button
           onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleConfetti(e)}
-          className={cn(
-            "ml-2",
-            "bg-yellow-400",
-            "py-2",
-            "px-4",
-            "text-zinc-900",
-            "font-semibold",
-            "rounded-lg",
-            "cursor-pointer"
-          )}
+          variant="default"
+          className="ml-2 bg-yellow-400 hover:bg-yellow-500 text-zinc-900"
         >
           Get Started
-        </button>
+        </Button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 sm:2 gap-4">
@@ -143,28 +135,30 @@ export function Pricing({
               </p>
 
               <ul className="mt-5 gap-2 flex flex-col">
-                {plan.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
-                    <Check className="h-4 w-4 text-yellow-400 mt-1 flex-shrink-0" />
-                    <span className="text-left text-zinc-300">{feature}</span>
+                {plan.features.map((feature, index) => (
+                  <li key={index} className="flex items-center gap-2">
+                    <Check className="h-4 w-4 text-yellow-400" />
+                    <span className="text-sm text-zinc-300">{feature}</span>
                   </li>
                 ))}
               </ul>
 
               <hr className="w-full my-4 border-zinc-800" />
 
-              <Link
-                href={plan.href}
+              <Button
+                asChild
+                variant="outline"
                 className={cn(
-                  "group relative w-full gap-2 overflow-hidden text-lg font-semibold tracking-tighter",
-                  "transform-gpu ring-offset-current transition-all duration-300 ease-out hover:ring-2 hover:ring-yellow-400 hover:ring-offset-1 hover:bg-yellow-400 hover:text-zinc-900",
-                  plan.isPopular
-                    ? "bg-yellow-400 text-zinc-900"
-                    : "bg-zinc-900 text-zinc-100 border-zinc-700"
+                  "mt-8 w-full group relative gap-2 overflow-hidden text-lg font-semibold tracking-tighter",
+                  "transform-gpu ring-offset-current transition-all duration-300 ease-out",
+                  "hover:ring-2 hover:ring-yellow-400 hover:ring-offset-1 hover:bg-yellow-400 hover:text-zinc-900",
+                  plan.isPopular && "bg-yellow-400 text-zinc-900 hover:bg-yellow-500"
                 )}
               >
-                {plan.buttonText}
-              </Link>
+                <Link href={plan.href}>
+                  {plan.buttonText}
+                </Link>
+              </Button>
               <p className="mt-6 text-xs leading-5 text-zinc-400">
                 {plan.description}
               </p>

@@ -1,9 +1,8 @@
 "use client";
 
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { useMediaQuery } from "@/hooks/use-media-query";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { Check, Star } from "lucide-react";
@@ -157,9 +156,6 @@ export function Pricing({
               <Link
                 href={plan.href}
                 className={cn(
-                  buttonVariants({
-                    variant: "outline",
-                  }),
                   "group relative w-full gap-2 overflow-hidden text-lg font-semibold tracking-tighter",
                   "transform-gpu ring-offset-current transition-all duration-300 ease-out hover:ring-2 hover:ring-yellow-400 hover:ring-offset-1 hover:bg-yellow-400 hover:text-zinc-900",
                   plan.isPopular

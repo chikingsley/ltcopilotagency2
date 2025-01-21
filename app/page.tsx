@@ -270,53 +270,55 @@ export default function Home() {
   return (
     <div className="bg-black text-white min-h-screen">
       {/* Hero Section */}
-      <motion.header 
-        className="container mx-auto px-4 py-20"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <nav className="flex justify-between items-center mb-16">
-          <Image
-            src="/logo-3x-copilot agency.svg"
-            alt="CoPilot Agency"
-            width={150}
-            height={56}
-            priority
-            className="h-12 w-auto"
-          />
-          <div className="space-x-8">
-            <a href="#services" className="hover:text-yellow-400">Services</a>
-            <a href="#expertise" className="hover:text-yellow-400">Expertise</a>
-            <a href="#approach" className="hover:text-yellow-400">Our Approach</a>
-            <button className="bg-yellow-400 text-black px-6 py-2 rounded">
-              Crisis Line 24/7
-            </button>
-          </div>
-        </nav>
-        
-        <motion.div 
-          className="max-w-4xl"
+      <section className="relative min-h-screen flex items-center pb-12">
+        <motion.header 
+          className="container mx-auto px-4 py-20"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
+          transition={{ duration: 0.6 }}
         >
-          <h1 className="text-5xl font-bold mb-6">
-            Strategic Communications & Crisis Management for High-Stakes Situations
-          </h1>
-          <p className="text-xl mb-8">
-            When reputation matters most, global leaders trust CoPilot Agency for strategic communications and crisis management. Available 24/7 for immediate response.
-          </p>
-          <div className="flex space-x-4">
-            <button className="bg-yellow-400 text-black px-8 py-3 rounded-lg flex items-center">
-              Contact Crisis Team <ChevronRight className="ml-2" />
-            </button>
-            <button className="border border-yellow-400 text-yellow-400 px-8 py-3 rounded-lg">
-              Schedule Consultation
-            </button>
-          </div>
-        </motion.div>
-      </motion.header>
+          <nav className="flex justify-between items-center mb-16">
+            <Image
+              src="/logo-3x-copilot agency.svg"
+              alt="CoPilot Agency"
+              width={150}
+              height={56}
+              priority
+              className="h-12 w-auto"
+            />
+            <div className="space-x-8">
+              <a href="#services" className="hover:text-yellow-400">Services</a>
+              <a href="#expertise" className="hover:text-yellow-400">Expertise</a>
+              <a href="#approach" className="hover:text-yellow-400">Our Approach</a>
+              <button className="bg-yellow-400 text-black px-6 py-2 rounded">
+                Crisis Line 24/7
+              </button>
+            </div>
+          </nav>
+          
+          <motion.div 
+            className="max-w-4xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <h1 className="text-5xl font-bold mb-6">
+              Strategic Communications & Crisis Management for High-Stakes Situations
+            </h1>
+            <p className="text-xl mb-8">
+              When reputation matters most, global leaders trust CoPilot Agency for strategic communications and crisis management. Available 24/7 for immediate response.
+            </p>
+            <div className="flex space-x-4">
+              <button className="bg-yellow-400 text-black px-8 py-3 rounded-lg flex items-center">
+                Contact Crisis Team <ChevronRight className="ml-2" />
+              </button>
+              <button className="border border-yellow-400 text-yellow-400 px-8 py-3 rounded-lg">
+                Schedule Consultation
+              </button>
+            </div>
+          </motion.div>
+        </motion.header>
+      </section>
 
       {/* Partners Marquee */}
       <Marquee 
@@ -346,8 +348,8 @@ export default function Home() {
         ))}
       </Marquee>
 
-      {/* Interactive Services Section */}
-      <section className="py-20">
+      {/* Services Section */}
+      <section className="bg-zinc-900 py-20">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -413,81 +415,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Industries We Serve */}
-      <section className="bg-zinc-900 py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="container px-4"
-        >
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6">Industries We Serve</h2>
-            <p className="text-xl text-zinc-400 max-w-3xl mx-auto">
-              We partner with organizations across various sectors, delivering strategic communication solutions that drive meaningful impact and create lasting change.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            {[
-              "Political Organizations",
-              "Government Agencies",
-              "Think Tanks",
-              "NGOs",
-              "Public Institutions",
-              "Trade Associations",
-              "Educational Institutions",
-              "Advocacy Groups",
-              "International Organizations",
-              "Political Campaigns",
-              "Religious Organizations",
-              "Policy Research Centers",
-              "Diplomatic Missions"
-            ].map((industry) => (
-              <motion.button
-                key={industry}
-                className="bg-black hover:bg-zinc-800 text-white px-6 py-3 rounded-lg text-sm transition-all border border-zinc-800 hover:border-yellow-400"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                {industry}
-              </motion.button>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-12 bg-zinc-900">
-        <AnimatedTestimonials 
-          testimonials={[
-            {
-              quote: "Their crisis management expertise is unparalleled. When we faced a critical situation, their team's rapid response and strategic guidance helped us navigate through it successfully. They're not just consultants, they're trusted partners.",
-              name: "Ian Marquez",
-              designation: "CEO, Global Communications Corp",
-              src: "/ian_marq.jpeg"
-            },
-            {
-              quote: "Their political communications strategy transformed our campaign. The team's ability to craft compelling messages and manage complex stakeholder relationships was instrumental in our success. They deliver results when it matters most.",
-              name: "Sarah Chen",
-              designation: "Political Campaign Director",
-              src: "/sarah_chen.jpg"
-            },
-            {
-              quote: "In the fast-paced tech industry, reputation management is crucial. Their team's proactive approach to crisis prevention and digital communications strategy has been invaluable. They understand our industry and deliver solutions that work.",
-              name: "Michael Thompson",
-              designation: "Director of Communications, Tech Global",
-              src: "/michael_thompson.jpg"
-            }
-          ]}
-          autoplay={true}
-        />
-      </section>
-
       {/* Approach Section */}
-      <section className="py-20">
+      <section className="bg-black py-20">
         <div className="container px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-6">Our Approach</h2>
+            <h2 className="text-4xl font-bold mb-6 text-zinc-100">Our Approach</h2>
             <p className="text-xl text-zinc-400 max-w-3xl mx-auto">
               We combine proactive protection, strategic response, and continuous training to ensure your organization is prepared for any challenge.
             </p>
@@ -632,56 +564,119 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Industries We Serve */}
+      <section className="bg-zinc-900 py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="container px-4"
+        >
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-6 text-zinc-100">Industries We Serve</h2>
+            <p className="text-xl text-zinc-400 max-w-3xl mx-auto">
+              We partner with organizations across various sectors, delivering strategic communication solutions that drive meaningful impact and create lasting change.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+            {[
+              "Political Organizations",
+              "Government Agencies",
+              "Think Tanks",
+              "NGOs",
+              "Public Institutions",
+              "Trade Associations",
+              "Educational Institutions",
+              "Advocacy Groups",
+              "International Organizations",
+              "Political Campaigns",
+              "Religious Organizations",
+              "Policy Research Centers",
+              "Diplomatic Missions"
+            ].map((industry, index) => (
+              <motion.button
+                key={industry}
+                className="bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-yellow-400 px-6 py-4 rounded-xl text-sm transition-all border border-zinc-800 hover:border-yellow-400/50 text-left font-medium"
+                whileHover={{ scale: 1.02 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.2,
+                  delay: index * 0.1
+                }}
+              >
+                {industry}
+              </motion.button>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
       {/* Pricing Section */}
-      <section className="py-20">
+      <section className="bg-black py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="container mx-auto px-4"
         >
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6">Your Communications Copilot</h2>
-            <p className="text-xl mb-8">
+          <div className="text-center mb-8">
+            <h2 className="text-4xl font-bold mb-6 text-zinc-100">Your Communications Copilot</h2>
+            <p className="text-xl text-zinc-400">
               Strategic partnership packages designed to protect and enhance your reputation across all scenarios.
             </p>
           </div>
 
           <Pricing
-            title="Your Communications Copilot"
-            description="Strategic partnership packages designed to protect and enhance your reputation across all scenarios."
+            title=""
+            description=""
             plans={pricingPlans}
           />
         </motion.div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="bg-zinc-900 py-12 border-y border-zinc-800">
+        <AnimatedTestimonials 
+          testimonials={[
+            {
+              quote: "Their crisis management expertise is unparalleled. When we faced a critical situation, their team's rapid response and strategic guidance helped us navigate through it successfully. They're not just consultants, they're trusted partners.",
+              name: "Ian Marquez",
+              designation: "CEO, Global Communications Corp",
+              src: "/ian_marq.jpeg"
+            },
+            {
+              quote: "Their political communications strategy transformed our campaign. The team's ability to craft compelling messages and manage complex stakeholder relationships was instrumental in our success. They deliver results when it matters most.",
+              name: "Sarah Chen",
+              designation: "Political Campaign Director",
+              src: "/sarah_chen.jpg"
+            },
+            {
+              quote: "In the fast-paced tech industry, reputation management is crucial. Their team's proactive approach to crisis prevention and digital communications strategy has been invaluable. They understand our industry and deliver solutions that work.",
+              name: "Michael Thompson",
+              designation: "Director of Communications, Tech Global",
+              src: "/michael_thompson.jpg"
+            }
+          ]}
+          autoplay={true}
+        />
+      </section>
+
       {/* Crisis CTA Section */}
-      <section className="py-20">
+      <section className="bg-black py-20">
         <div className="container mx-auto px-4">
           <motion.div 
             className="bg-red-600 p-12 rounded-lg text-center"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
           >
-            <AlertTriangle className="h-16 w-16 mx-auto mb-6 text-white" />
-            <h2 className="text-3xl font-bold mb-4">Facing a Crisis?</h2>
-            <p className="text-xl mb-8">Our team is available 24/7 for immediate response</p>
-            <div className="flex justify-center space-x-4">
-              <motion.button 
-                className="bg-white text-red-600 px-8 py-3 rounded-lg font-bold"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Call Crisis Line
-              </motion.button>
-              <motion.button 
-                className="border-2 border-white px-8 py-3 rounded-lg font-bold"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Email Crisis Team
-              </motion.button>
-            </div>
+            <h2 className="text-4xl font-bold text-white mb-4">Facing a Crisis?</h2>
+            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+              Don't wait until it's too late. Our crisis management team is available 24/7 to help you navigate through any challenge.
+            </p>
+            <button className="bg-white text-red-600 px-8 py-3 rounded-lg font-semibold text-lg hover:bg-red-50 transition-colors">
+              Contact Crisis Team Now
+            </button>
           </motion.div>
         </div>
       </section>

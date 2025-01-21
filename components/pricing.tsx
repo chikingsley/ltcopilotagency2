@@ -30,6 +30,11 @@ interface PricingProps {
   description?: string;
 }
 
+type TransformTiming = {
+  duration: number;
+  easing: string;
+};
+
 export function Pricing({
   plans,
   title = "Simple, Transparent Pricing",
@@ -145,17 +150,17 @@ export function Pricing({
               </p>
               <div className="mt-6 flex items-center justify-center gap-x-2">
                 <span className="text-5xl font-bold tracking-tight text-zinc-100">
+                  $
                   <NumberFlow
                     value={
                       isMonthly ? Number(plan.price) : Number(plan.yearlyPrice)
                     }
                     format={{
-                      style: "currency",
-                      currency: "USD",
+                      style: "decimal",
                       minimumFractionDigits: 0,
                       maximumFractionDigits: 0,
+                      useGrouping: true
                     }}
-                    formatter={(value) => `$${value}`}
                     transformTiming={{
                       duration: 500,
                       easing: "ease-out",

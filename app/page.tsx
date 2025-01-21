@@ -84,7 +84,24 @@ const packages = [
   }
 ];
 
-const services = {
+interface Capability {
+  title: string;
+  description: string;
+  features: string[];
+}
+
+interface Service {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  capabilities: Capability[];
+}
+
+type Services = {
+  [key in 'political' | 'training' | 'international' | 'digital']: Service;
+}
+
+const services: Services = {
   political: {
     icon: Target,
     title: "Political & Campaign",
@@ -244,7 +261,7 @@ const ServiceButton = ({ isActive, icon: Icon, title, onClick }: ServiceButtonPr
 };
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState('political');
+  const [activeTab, setActiveTab] = useState<keyof Services>('political');
 
   return (
     <div className="bg-black text-white min-h-screen">
@@ -347,7 +364,7 @@ export default function Home() {
                 isActive={activeTab === key}
                 icon={service.icon}
                 title={service.title}
-                onClick={() => setActiveTab(key)}
+                onClick={() => setActiveTab(key as keyof Services)}
               />
             ))}
           </div>

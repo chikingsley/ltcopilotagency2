@@ -1,7 +1,7 @@
 'use client';  // Required for Framer Motion in Next.js 13+
 
 import React, { useState } from 'react';
-import { ChevronRight, Shield, Megaphone, Users, AlertTriangle, Check, ArrowRight, Globe, Target, Building, Info, Radio, Database, Eye, Command, MessageSquare, Video, Users2, BookOpen } from 'lucide-react';
+import { ChevronRight, Shield, Users, AlertTriangle, Check, ArrowRight, Globe, Target, Command, MessageSquare } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";

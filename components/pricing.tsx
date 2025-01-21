@@ -8,15 +8,9 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { Check, Star } from "lucide-react";
 import Link from "next/link";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import confetti from "canvas-confetti";
 import NumberFlow from "@number-flow/react";
-
-interface PricingProps {
-  title?: string;
-  description?: string;
-  plans: Plan[];
-}
 
 interface Plan {
   name: string;
@@ -30,47 +24,30 @@ interface Plan {
   features: string[];
 }
 
-interface NumberFlowProps {
-  value: number;
-  format: Record<string, unknown>;
+interface PricingProps {
+  title?: string;
+  description?: string;
+  plans: Plan[];
 }
 
 export function Pricing({
   plans,
-  title = "Simple, Transparent Pricing",
-  description = "Choose the plan that works for you\nAll plans include access to our platform, lead generation tools, and dedicated support.",
+  title = "Transparent Pricing for Every Need",
+  description = "Choose the plan that best fits your needs.",
 }: PricingProps) {
-  const [isMonthly, setIsMonthly] = useState(true);
-  const isDesktop = useMediaQuery("(min-width: 768px)");
-  const switchRef = useRef<HTMLButtonElement>(null);
+  const [isYearly, setIsYearly] = useState(false);
 
-  const handleToggle = (checked: boolean) => {
-    setIsMonthly(!checked);
-    if (checked && switchRef.current) {
-      const rect = switchRef.current.getBoundingClientRect();
-      const x = rect.left + rect.width / 2;
-      const y = rect.top + rect.height / 2;
-
-      confetti({
-        particleCount: 50,
-        spread: 60,
-        origin: {
-          x: x / window.innerWidth,
-          y: y / window.innerHeight,
-        },
-        colors: [
-          "hsl(var(--primary))",
-          "hsl(var(--accent))",
-          "hsl(var(--secondary))",
-          "hsl(var(--muted))",
-        ],
-        ticks: 200,
-        gravity: 1.2,
-        decay: 0.94,
-        startVelocity: 30,
-        shapes: ["circle"],
-      });
-    }
+  const handleConfetti = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const { clientX, clientY } = event;
+    confetti({
+      zIndex: 999,
+      particleCount: 100,
+      spread: 70,
+      origin: {
+        x: clientX / window.innerWidth,
+        y: clientY / window.innerHeight,
+      },
+    });
   };
 
   return (
@@ -88,9 +65,8 @@ export function Pricing({
         <label className="relative inline-flex items-center cursor-pointer">
           <Label>
             <Switch
-              ref={switchRef as any}
-              checked={!isMonthly}
-              onCheckedChange={handleToggle}
+              checked={isYearly}
+              onCheckedChange={setIsYearly}
               className="relative"
             />
           </Label>
@@ -98,6 +74,21 @@ export function Pricing({
         <span className="ml-2 font-semibold text-zinc-300">
           Annual billing <span className="text-yellow-400">(Save 20%)</span>
         </span>
+        <button
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleConfetti(e)}
+          className={cn(
+            "ml-2",
+            "bg-yellow-400",
+            "py-2",
+            "px-4",
+            "text-zinc-900",
+            "font-semibold",
+            "rounded-lg",
+            "cursor-pointer"
+          )}
+        >
+          Get Started
+        </button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 sm:2 gap-4">
@@ -130,7 +121,7 @@ export function Pricing({
                   $
                   <NumberFlow
                     value={
-                      isMonthly ? Number(plan.price) : Number(plan.yearlyPrice)
+                      isYearly ? Number(plan.yearlyPrice) : Number(plan.price)
                     }
                     format={{
                       style: "decimal",
@@ -149,7 +140,7 @@ export function Pricing({
               </div>
 
               <p className="text-xs leading-5 text-zinc-400">
-                {isMonthly ? "billed monthly" : "billed annually"}
+                {isYearly ? "billed annually" : "billed monthly"}
               </p>
 
               <ul className="mt-5 gap-2 flex flex-col">

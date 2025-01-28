@@ -8,11 +8,12 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { Menu } from 'lucide-react';
 import { useState } from 'react';
 import { useTheme } from 'next-themes';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 export function Header() {
   const isMobile = useIsMobile();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
   const [altLogo, setAltLogo] = useState(false);
 
   const toggleLogo = () => {
@@ -21,14 +22,22 @@ export function Header() {
 
   const getLogo = () => {
     if (theme === 'dark') {
-      return altLogo ? '/copilot-alt-logo-gold.svg' : '/logo-3x-copilot-agency.svg';
+      return altLogo ? '/copilot-alt-logo-gold.svg' : '/copilot-og-logo-gold.svg';
     }
-    return altLogo ? '/copilot-alt-logo-gold.svg' : '/copilot-black-logo.svg';
+    return altLogo ? '/copilot-alt-logo-black.svg' : '/copilot-og-logo-black.svg';
+  };
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setIsMenuOpen(false);
+    }
   };
 
   return (
     <motion.header 
-      className="container mx-auto py-6 px-4"
+      className="container mx-auto pt-6 pb-0 px-4"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.1 }}
@@ -38,17 +47,17 @@ export function Header() {
           <Image 
             src={getLogo()} 
             alt="CoPilot Agency" 
-            width={150} 
-            height={56} 
+            width={altLogo ? 230 : 150} 
+            height={altLogo ? 100 : 56} 
             priority 
-            className="h-12 w-auto cursor-pointer transition-opacity duration-200 hover:opacity-80" 
+            className={`${altLogo ? 'h-[3.75rem]' : 'h-12'} w-auto cursor-pointer transition-opacity duration-200 hover:opacity-80`}
             onClick={toggleLogo}
           />
           {!isMobile && (
             <div className="flex items-center gap-8">
-              <a href="#services" className="text-sm font-medium text-muted-foreground hover:text-foreground">Services</a>
-              <a href="#approach" className="text-sm font-medium text-muted-foreground hover:text-foreground">Our Approach</a>
-              <a href="#industries" className="text-sm font-medium text-muted-foreground hover:text-foreground">Industries</a>
+              <button onClick={() => scrollToSection('services')} className="text-sm font-medium text-muted-foreground hover:text-foreground">Our Services</button>
+              <button onClick={() => scrollToSection('approach')} className="text-sm font-medium text-muted-foreground hover:text-foreground">Our Approach</button>
+              <button onClick={() => scrollToSection('industries')} className="text-sm font-medium text-muted-foreground hover:text-foreground">Industries</button>
             </div>
           )}
         </div>
@@ -61,30 +70,28 @@ export function Header() {
           )}
           <ModeToggle />
           {isMobile && (
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 hover:bg-accent rounded-lg"
-            >
-              <Menu className="h-6 w-6" />
-            </button>
+            <Popover open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+              <PopoverTrigger asChild>
+                <button
+                  className="p-2 hover:bg-accent rounded-lg"
+                >
+                  <Menu className="h-6 w-6" />
+                </button>
+              </PopoverTrigger>
+              <PopoverContent className="w-48">
+                <div className="flex flex-col gap-2 py-2">
+                  <button onClick={() => scrollToSection('services')} className="text-sm font-medium text-muted-foreground hover:text-foreground px-3 py-2 hover:bg-accent rounded-md text-left">Our Services</button>
+                  <button onClick={() => scrollToSection('approach')} className="text-sm font-medium text-muted-foreground hover:text-foreground px-3 py-2 hover:bg-accent rounded-md text-left">Our Approach</button>
+                  <button onClick={() => scrollToSection('industries')} className="text-sm font-medium text-muted-foreground hover:text-foreground px-3 py-2 hover:bg-accent rounded-md text-left">Industries</button>
+                  <ActionButton variant="primary" showIcon className="mt-2">
+                    Contact Us
+                  </ActionButton>
+                </div>
+              </PopoverContent>
+            </Popover>
           )}
         </div>
       </nav>
-
-      {isMobile && isMenuOpen && (
-        <motion.div 
-          className="mt-4 flex flex-col gap-4"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          <a href="#services" className="text-sm font-medium text-muted-foreground hover:text-foreground">Services</a>
-          <a href="#approach" className="text-sm font-medium text-muted-foreground hover:text-foreground">Our Approach</a>
-          <a href="#industries" className="text-sm font-medium text-muted-foreground hover:text-foreground">Industries</a>
-          <ActionButton variant="primary" showIcon className="w-full justify-center">
-            Contact Us
-          </ActionButton>
-        </motion.div>
-      )}
     </motion.header>
   );
 }

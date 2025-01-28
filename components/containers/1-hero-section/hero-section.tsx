@@ -20,8 +20,8 @@ export function HeroSection() {
       </div>
       <section className="relative min-h-[calc(100vh-120px)] flex flex-col">
         <Header />
-        <div className="flex-1 flex flex-col items-center justify-center py-14 gap-16">
-          <CenteredSeparator />
+        <div className="flex-1 flex flex-col items-center justify-center gap-16">
+          {/* <CenteredSeparator /> */}
           <HeroContent />
           <CenteredSeparator />
         </div>

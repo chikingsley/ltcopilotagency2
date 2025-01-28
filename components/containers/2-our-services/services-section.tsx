@@ -3,8 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown } from "lucide-react";
-import { services, type Services } from '@/lib/services-data';
-import { useIsMobile } from '@/hooks/use-mobile';
+import { services } from '@/lib/services-data';
 import {
   Collapsible,
   CollapsibleContent,
@@ -19,7 +18,6 @@ interface ServiceItemProps {
 }
 
 const ServiceItem = ({ icon: Icon, title, description, features }: ServiceItemProps) => {
-  const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
   
   return (
@@ -74,8 +72,6 @@ const ServiceItem = ({ icon: Icon, title, description, features }: ServiceItemPr
 };
 
 export function ServicesSection() {
-  const isMobile = useIsMobile();
-
   return (
     <section className="bg-background py-20">
       <div className="container mx-auto">
@@ -85,8 +81,8 @@ export function ServicesSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className={`${isMobile ? 'text-3xl' : 'text-4xl'} font-bold text-foreground mb-6`}>Our Services</h2>
-          <p className={`${isMobile ? 'text-lg' : 'text-xl'} text-muted-foreground max-w-2xl mx-auto px-4`}>
+          <h2 className="text-4xl font-bold text-foreground mb-6">Our Services</h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto px-4">
             Expert solutions for complex communications challenges across sectors and scenarios.
           </p>
         </motion.div>

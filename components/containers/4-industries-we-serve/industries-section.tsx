@@ -7,7 +7,7 @@ import { useIsMobile } from '@/hooks/use-mobile'
 const industries = [
   {
     icon: Building2,
-    name: 'Corporate',
+    name: 'Corporations',
     description: 'Strategic communications for Fortune 500 companies and emerging enterprises.'
   },
   {
@@ -22,13 +22,13 @@ const industries = [
   },
   {
     icon: GraduationCap,
-    name: 'Education',
-    description: 'Crisis response and media relations for educational institutions.'
+    name: 'Political Parties',
+    description: 'Media strategy and crisis management for political parties and campaigns.'
   },
   {
     icon: Heart,
-    name: 'Healthcare',
-    description: 'Strategic communications for hospitals, biotech, and healthcare providers.'
+    name: 'NGOs & Thinktanks',
+    description: 'Media strategy and crisis management for non-governmental organizations and think tanks.'
   },
   {
     icon: Scale,
@@ -42,7 +42,7 @@ const industries = [
   },
   {
     icon: Plane,
-    name: 'Aviation',
+    name: 'Lobbyists',
     description: 'Crisis management and public relations for aviation industry leaders.'
   }
 ]

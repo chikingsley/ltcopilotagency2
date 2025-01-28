@@ -18,9 +18,9 @@ export function HeroSection() {
           announcement="🚨 Crisis Response"
         />
       </div>
-      <section className="relative min-h-[calc(100vh-120px)] flex flex-col">
+      <section className="relative flex flex-col">
         <Header />
-        <div className="flex-1 flex flex-col items-center justify-center gap-16">
+        <div className="flex-1 flex flex-col items-center justify-center gap-16 py-10">
           {/* <CenteredSeparator /> */}
           <HeroContent />
           <CenteredSeparator />

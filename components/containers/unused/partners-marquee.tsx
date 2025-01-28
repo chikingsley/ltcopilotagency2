@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Marquee } from "@/components/marquee";
+import { Marquee } from "@/components/containers/unused/marquee";
 
 export function PartnersMarquee() {
   return (

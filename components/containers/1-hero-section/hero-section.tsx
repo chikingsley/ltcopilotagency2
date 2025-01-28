@@ -1,27 +1,30 @@
 'use client'
 
-import { HeroPill } from "@/components/hero-pill";
 import { Header } from './header';
 import { HeroContent } from './hero-content';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { CenteredSeparator } from "@/components/ui/centered-separator";
+import { CrisisPill } from '@/components/ui/crisis-pill';
 
 export function HeroSection() {
   const isMobile = useIsMobile();
-  
+
   return (
     <>
-      {/* Hero Pill */}
-      <div className="flex justify-center pt-6 px-4">
-        <HeroPill
+      <div className="flex justify-center pt-8">
+        <CrisisPill
           href="#"
           label={isMobile ? "24/7 Crisis Support" : "24/7 Crisis Management Support Available"}
           announcement="🚨 Crisis Response"
-          className="bg-destructive/20 ring-destructive/20 hover:bg-destructive/30"
         />
       </div>
-      <section className={`relative ${isMobile ? 'h-auto min-h-[600px] pb-8' : 'h-[600px]'}`}>
+      <section className="relative min-h-[calc(100vh-120px)] flex flex-col">
         <Header />
-        <HeroContent />
+        <div className="flex-1 flex flex-col items-center justify-center py-14 gap-16">
+          <CenteredSeparator />
+          <HeroContent />
+          <CenteredSeparator />
+        </div>
       </section>
     </>
   );

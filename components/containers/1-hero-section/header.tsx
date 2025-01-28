@@ -2,8 +2,8 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { actionButton as ActionButton } from '@/components/action-button';
-import { ModeToggle } from '@/components/mode-toggle';
+import { actionButton as ActionButton } from '@/components/ui/action-button';
+import { ModeToggle } from '@/components/ui/mode-toggle';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Menu } from 'lucide-react';
 import { useState } from 'react';
@@ -12,6 +12,12 @@ export function Header() {
   const isMobile = useIsMobile();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
+    <ActionButton variant="secondary" className="!px-4 !py-2" onClick={() => window.location.href = href}>
+      {children}
+    </ActionButton>
+  );
+
   return (
     <motion.header 
       className="container mx-auto px-4 pt-8 relative" 
@@ -19,7 +25,7 @@ export function Header() {
       animate={{ opacity: 1, y: 0 }} 
       transition={{ duration: 0.6 }}
     >
-      <nav className="flex justify-between items-center mb-24 container-fluid">
+      <nav className="flex justify-between items-center container-fluid">
         <Image 
           src="/copilot-black-logo.svg" 
           alt="CoPilot Agency" 
@@ -46,9 +52,9 @@ export function Header() {
                 transition={{ duration: 0.2 }}
               >
                 <div className="flex flex-col gap-4">
-                  <a href="#services" className="text-foreground hover:text-[var(--accent-yellow)] transition-colors">Services</a>
-                  <a href="#expertise" className="text-foreground hover:text-[var(--accent-yellow)] transition-colors">Expertise</a>
-                  <a href="#approach" className="text-foreground hover:text-[var(--accent-yellow)] transition-colors">Our Approach</a>
+                  <NavLink href="#services">Services</NavLink>
+                  <NavLink href="#expertise">Expertise</NavLink>
+                  <NavLink href="#approach">Our Approach</NavLink>
                   <ActionButton variant="primary" className="whitespace-nowrap">
                     Crisis Line 24/7
                   </ActionButton>
@@ -61,9 +67,9 @@ export function Header() {
           </>
         ) : (
           <div className="flex items-center gap-6">
-            <a href="#services" className="text-foreground hover:text-[var(--accent-yellow)] transition-colors">Services</a>
-            <a href="#expertise" className="text-foreground hover:text-[var(--accent-yellow)] transition-colors">Expertise</a>
-            <a href="#approach" className="text-foreground hover:text-[var(--accent-yellow)] transition-colors">Our Approach</a>
+            <NavLink href="#services">Services</NavLink>
+            <NavLink href="#expertise">Expertise</NavLink>
+            <NavLink href="#approach">Our Approach</NavLink>
             <ActionButton variant="primary">
               Crisis Line 24/7
             </ActionButton>

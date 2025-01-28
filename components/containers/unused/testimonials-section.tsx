@@ -1,6 +1,6 @@
 'use client';
 
-import { AnimatedTestimonials } from "@/components/animated-testimonials";
+import { AnimatedTestimonials } from "@/components/containers/unused/animated-testimonials";
 import { testimonials } from "@/lib/testimonials-data";
 
 export function TestimonialsSection() {

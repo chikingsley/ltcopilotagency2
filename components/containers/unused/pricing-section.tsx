@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Pricing } from "@/components/pricing";
+import { Pricing } from "@/components/containers/unused/pricing";
 import { pricingPlans } from "@/lib/pricing-data";
 
 export function PricingSection() {

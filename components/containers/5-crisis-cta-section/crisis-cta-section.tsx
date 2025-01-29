@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Shield, Phone, Calendar } from 'lucide-react'
+import { Shield, Calendar } from 'lucide-react'
 import { useIsMobile } from '@/hooks/use-mobile'
 import { ActionButton } from '@/components/ui/action-button';
 

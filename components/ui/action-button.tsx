@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { twMerge } from "tailwind-merge";
-import { ButtonHTMLAttributes, forwardRef, ForwardRefRenderFunction, ReactNode, Ref, useLayoutEffect, useState } from "react";
+import { ButtonHTMLAttributes, forwardRef, ForwardRefRenderFunction, Ref } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;

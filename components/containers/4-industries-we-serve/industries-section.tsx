@@ -23,7 +23,7 @@ const industries = [
   {
     icon: GraduationCap,
     name: 'Political Parties',
-    description: 'Media strategy and crisis management for political parties and campaigns.'
+    description: 'Media strategy, event planning and crisis management for political parties and campaigns.'
   },
   {
     icon: Heart,
@@ -43,7 +43,7 @@ const industries = [
   {
     icon: Plane,
     name: 'Lobbyists',
-    description: 'Crisis management and public relations for aviation industry leaders.'
+    description: 'Media strategy, digital presence and crisis management for lobbyists and advocacy groups.'
   }
 ]
 

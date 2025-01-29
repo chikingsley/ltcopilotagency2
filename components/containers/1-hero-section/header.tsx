@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { actionButton as ActionButton } from '@/components/ui/action-button';
+import { ActionButton } from '@/components/ui/action-button';
 import { ModeToggle } from '@/components/ui/mode-toggle';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Menu } from 'lucide-react';

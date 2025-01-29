@@ -1,9 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Shield, Phone } from 'lucide-react'
+import { Shield, Phone, Calendar } from 'lucide-react'
 import { useIsMobile } from '@/hooks/use-mobile'
-import { actionButton as ActionButton } from '@/components/ui/action-button';
+import { ActionButton } from '@/components/ui/action-button';
 
 export function CrisisCtaSection() {
   const isMobile = useIsMobile()
@@ -18,8 +18,8 @@ export function CrisisCtaSection() {
             viewport={{ once: true }}
             className="flex flex-col items-center text-center"
           >
-            <div className="bg-destructive w-16 h-16 rounded-2xl flex items-center justify-center mb-8">
-              <Shield className="h-8 w-8 text-destructive-foreground" />
+            <div className="bg-[hsl(var(--success))] w-16 h-16 rounded-2xl flex items-center justify-center mb-8">
+              <Shield className="h-8 w-8 text-[hsl(var(--success-foreground))]" />
             </div>
             
             <h2 className={`${isMobile ? 'text-3xl' : 'text-4xl'} font-bold text-foreground mb-6`}>
@@ -30,18 +30,20 @@ export function CrisisCtaSection() {
             </p>
 
             <div className={`flex ${isMobile ? 'flex-col w-full space-y-4' : 'space-x-4'}`}>
-              <ActionButton 
+              {/* <ActionButton 
                 variant="destructive" 
                 className={`${isMobile ? 'w-full justify-center' : ''} group`}
                 showIcon
               >
                 <Phone className="mr-2 h-4 w-4 animate-pulse" />
                 Contact Crisis Team
-              </ActionButton>
+              </ActionButton> */}
               <ActionButton 
-                variant="destructive-outline" 
+                variant="successoutline" 
                 className={`${isMobile ? 'w-full justify-center' : ''}`}
+                showIcon
               >
+                <Calendar className="mr-2 h-4 w-4 animate-pulse" />
                 Schedule Consultation
               </ActionButton>
             </div>

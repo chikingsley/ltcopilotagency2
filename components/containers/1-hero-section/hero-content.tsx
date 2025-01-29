@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion';
-import { actionButton as ActionButton } from '@/components/ui/action-button';
+import { ActionButton } from '@/components/ui/action-button';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 export function HeroContent() {
@@ -23,11 +23,11 @@ export function HeroContent() {
         </p>
         <div className={`${isMobile ? 'flex flex-col space-y-4' : 'flex justify-center space-x-4'}`}>
           <ActionButton variant="primary" showIcon className={isMobile ? 'w-full justify-center' : ''}>
-            Contact Crisis Team
-          </ActionButton>
-          <ActionButton variant="secondary" className={isMobile ? 'w-full justify-center' : ''}>
             Schedule Consultation
           </ActionButton>
+          {/* <ActionButton variant="secondary" className={isMobile ? 'w-full justify-center' : ''}>
+            Schedule Consultation
+          </ActionButton> */}
         </div>
       </motion.div>
     </div>

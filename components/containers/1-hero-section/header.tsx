@@ -3,35 +3,17 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ActionButton } from '@/components/ui/action-button';
-import { ModeToggle } from '@/components/ui/mode-toggle';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Menu } from 'lucide-react';
-import { useState } from 'react';
-import { useTheme } from 'next-themes';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 export function Header() {
   const isMobile = useIsMobile();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { theme } = useTheme();
-  const [altLogo, setAltLogo] = useState(false);
-
-  const toggleLogo = () => {
-    setAltLogo(!altLogo);
-  };
-
-  const getLogo = () => {
-    if (theme === 'dark') {
-      return altLogo ? '/copilot-alt-logo-gold.svg' : '/copilot-og-logo-gold.svg';
-    }
-    return altLogo ? '/copilot-alt-logo-black.svg' : '/copilot-og-logo-black.svg';
-  };
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
     }
   };
 
@@ -45,13 +27,12 @@ export function Header() {
       <nav className="flex items-center justify-between">
         <div className="flex items-center gap-12">
           <Image 
-            src={getLogo()} 
+            src="/copilot-og-logo-gold.svg" 
             alt="CoPilot Agency" 
-            width={altLogo ? 230 : 150} 
-            height={altLogo ? 100 : 56} 
+            width={150} 
+            height={56} 
             priority 
-            className={`${altLogo ? 'h-[3.75rem]' : 'h-12'} w-auto cursor-pointer transition-opacity duration-200 hover:opacity-80`}
-            onClick={toggleLogo}
+            className="h-12 w-auto cursor-pointer transition-opacity duration-200 hover:opacity-80"
           />
           {!isMobile && (
             <div className="flex items-center gap-8">
@@ -68,9 +49,8 @@ export function Header() {
               Contact Us
             </ActionButton>
           )}
-          <ModeToggle />
           {isMobile && (
-            <Popover open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+            <Popover>
               <PopoverTrigger asChild>
                 <button
                   className="p-2 hover:bg-accent rounded-lg"

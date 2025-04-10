@@ -20,9 +20,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
+    // suppressHydrationWarning is important when forcing theme
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}>
-        <ThemeProvider>
+        {/* Add forcedTheme="dark" here */}
+        <ThemeProvider forcedTheme="dark">
           {children}
         </ThemeProvider>
       </body>

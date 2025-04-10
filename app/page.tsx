@@ -25,7 +25,7 @@ export default function Home() {
       </div>
       <Header />
       <div className="pt-10 pb-5">
-      <CenteredSeparator />
+        <CenteredSeparator />
       </div>
       <HeroSection />
       <ServicesSection />

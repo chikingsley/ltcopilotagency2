@@ -10,6 +10,7 @@ import { CenteredSeparator } from "@/components/ui/centered-separator";
 import { Header } from "@/components/containers/1-hero-section/header";
 import { CrisisPill } from "@/components/ui/crisis-pill";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { ProfileForm } from "@/components/containers/6-form/form-section";
 
 export default function Home() {
   const isMobile = useIsMobile();
@@ -34,6 +35,7 @@ export default function Home() {
       <IndustriesSection />
       <CenteredSeparator />
       <CrisisCtaSection />
+      <ProfileForm />
     </div>
   );
 }

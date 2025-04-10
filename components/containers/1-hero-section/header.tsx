@@ -20,8 +20,8 @@ export function Header() {
 
   return (
     <motion.header 
-      /* Adjusted top-0 to top-10 to account for CrisisBanner */
-      className="sticky top-10 z-40 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 container mx-auto px-4 py-4"
+      /* Adjusted top-10 to top-12 to account for CrisisBanner */
+      className="sticky top-14 z-40 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 container mx-auto px-4 py-4"
       initial={{ y: -100, opacity: 0 }} 
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.1 }}

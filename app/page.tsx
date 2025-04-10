@@ -7,22 +7,14 @@ import { ApproachSection } from "@/components/containers/3-our-approach/approach
 import { IndustriesSection } from "@/components/containers/4-industries-we-serve/industries-section";
 import { CenteredSeparator } from "@/components/ui/centered-separator";
 import { Header } from "@/components/containers/1-hero-section/header";
-// import { CrisisPill } from "@/components/ui/crisis-pill";
-// import { useIsMobile } from "@/hooks/use-mobile";
 import { ProfileForm } from "@/components/containers/6-form/form-section";
 import { Footer } from "@/components/containers/7-footer/footer-section";
+import { CrisisBanner } from '@/components/ui/crisis-banner';
 
 export default function Home() {
-  // const isMobile = useIsMobile();
   return (
     <div className="min-h-screen">
-      {/* <div className="flex justify-center pt-8">
-        <CrisisPill
-          href="#"
-          label={isMobile ? "24/7 Crisis Support" : "24/7 Crisis Management Support Available"}
-          announcement="🚨 Crisis Response"
-        />
-      </div> */}
+      <CrisisBanner /> 
       <Header />
       <HeroSection />
       <CenteredSeparator />

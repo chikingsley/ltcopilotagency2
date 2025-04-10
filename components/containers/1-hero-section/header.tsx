@@ -1,6 +1,6 @@
 'use client'
 
-import Image from 'next/image';
+import CopilotLogo from '@/components/logo/copilot-logo';
 import { motion } from 'framer-motion';
 import { ActionButton } from '@/components/ui/action-button';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -20,19 +20,18 @@ export function Header() {
 
   return (
     <motion.header 
-      /* Adjusted top-10 to top-12 to account for CrisisBanner */
       className="sticky top-14 z-40 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 container mx-auto px-4 py-4"
       initial={{ y: -100, opacity: 0 }} 
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.1 }}
     >
       <nav className="flex items-center justify-between">
-        <Image 
-          src="/copilot-og-logo-gold.svg" 
-          alt="CoPilot Agency" 
+        <CopilotLogo
+          fill="#E7DF40" 
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          title="Copilot Agency Logo" 
           width={150} 
           height={56} 
-          priority 
           className="h-12 w-auto cursor-pointer transition-opacity duration-200 hover:opacity-80"
         />
 

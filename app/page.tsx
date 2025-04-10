@@ -1,4 +1,4 @@
-'use client';  // Required for Framer Motion in Next.js 13+
+'use client';  
 
 import React from 'react';
 import { HeroSection } from "@/components/containers/1-hero-section/hero-section";
@@ -7,8 +7,8 @@ import { ApproachSection } from "@/components/containers/3-our-approach/approach
 import { IndustriesSection } from "@/components/containers/4-industries-we-serve/industries-section";
 import { CenteredSeparator } from "@/components/ui/centered-separator";
 import { Header } from "@/components/containers/1-hero-section/header";
-import { ProfileForm } from "@/components/containers/6-form/form-section";
-import { Footer } from "@/components/containers/7-footer/footer-section";
+import { ProfileForm } from "@/components/containers/5-form/form-section";
+import { Footer } from "@/components/containers/6-footer/footer-section";
 import { CrisisBanner } from '@/components/ui/crisis-banner';
 
 export default function Home() {

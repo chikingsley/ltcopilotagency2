@@ -3,6 +3,7 @@
 import { useIsMobile } from '@/hooks/use-mobile';
 import { motion } from 'framer-motion';
 import { ActionButton } from '@/components/ui/action-button';
+import { heroSectionData } from '@/lib/data/heroSectionData';
 
 export function HeroSection() {
   const isMobile = useIsMobile();
@@ -16,9 +17,7 @@ export function HeroSection() {
 
   return (
     <>
-      {/* Responsive vertical padding: py-10 on small, py-20 on md+ */}
       <section className="relative flex flex-col py-16 md:py-20">
-        {/* Responsive inner padding and gap */}
         <div className="flex-1 flex flex-col items-center justify-center gap-8 md:gap-16 p-4 sm:p-8 md:p-16 lg:p-20">
           <div className="container mx-auto h-full flex items-center justify-center">
             <motion.div
@@ -28,13 +27,13 @@ export function HeroSection() {
               transition={{ delay: 0.2 }}
             >
               <h1 className={`${isMobile ? 'text-3xl' : 'text-5xl'} font-black mb-6 text-foreground`}>
-                Strategic Communications
+                {heroSectionData.headingLine1}
                 {' '}
                 <br className="hidden md:block" />
-                for High-Stakes Situations
+                {heroSectionData.headingLine2}
               </h1>
               <p className={`${isMobile ? 'text-lg' : 'text-xl'} mb-8 text-muted-foreground`}>
-                When reputation matters most, global leaders from startups to Fortune 500 companies trust CoPilot Agency for strategic communications and crisis management. Available 24/7 for immediate response.
+                {heroSectionData.paragraph}
               </p>
               <div className={`${isMobile ? 'flex flex-col space-y-4' : 'flex justify-center space-x-4'}`}>
                 <ActionButton 
@@ -43,7 +42,7 @@ export function HeroSection() {
                   className={isMobile ? 'w-full justify-center' : ''}
                   onClick={() => scrollToSection('contact')} 
                 >
-                  Schedule Consultation
+                  {heroSectionData.buttonText}
                 </ActionButton>
               </div>
             </motion.div>

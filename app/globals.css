@@ -30,8 +30,6 @@ body {
   font-family: 'Bicyclette', Arial, Helvetica, sans-serif;
 }
 
-
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -40,9 +38,8 @@ body {
     --card-foreground: 20 14.3% 4.1%;
     --popover: 0 0% 100%;
     --popover-foreground: 20 14.3% 4.1%;
-    /* Updated Primary Color */
     --primary: 57 78% 58%;
-    --primary-foreground: 26 83.3% 14.1%; /* Keeping original foreground for contrast */
+    --primary-foreground: 26 83.3% 14.1%;
     --secondary: 60 4.8% 95.9%;
     --secondary-foreground: 24 9.8% 10%;
     --muted: 60 4.8% 95.9%;
@@ -71,9 +68,8 @@ body {
     --card-foreground: 60 9.1% 97.8%;
     --popover: 20 14.3% 4.1%;
     --popover-foreground: 60 9.1% 97.8%;
-    /* Updated Primary Color */
     --primary: 57 78% 58%;
-    --primary-foreground: 26 83.3% 14.1%; /* Keeping original foreground for contrast */
+    --primary-foreground: 26 83.3% 14.1%; 
     --secondary: 12 6.5% 15.1%;
     --secondary-foreground: 60 9.1% 97.8%;
     --muted: 12 6.5% 15.1%;
@@ -84,7 +80,7 @@ body {
     --destructive-foreground: 60 9.1% 97.8%;
     --border: 12 6.5% 15.1%;
     --input: 12 6.5% 15.1%;
-    --ring: 35.5 91.7% 32.9%; /* Consider updating ring color if needed */
+    --ring: 35.5 91.7% 32.9%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;

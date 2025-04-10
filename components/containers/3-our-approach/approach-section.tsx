@@ -1,57 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion';
-import { Shield, Megaphone, LineChart, Users } from 'lucide-react';
 import { ApproachCard } from './approach-card';
 import { useIsMobile } from '@/hooks/use-mobile';
-
-const approaches = [
-  {
-    icon: Shield,
-    title: "Proactive Protection",
-    description: "We identify and mitigate potential risks before they become crises.",
-    features: [
-      "Social media vulnerability audits",
-      "Digital footprint minimization",
-      "24/7 media sentiment tracking",
-      "Early warning detection systems"
-    ]
-  },
-  {
-    icon: Megaphone,
-    title: "Crisis Response",
-    description: "24/7 rapid response and battle-tested strategies to protect your reputation.",
-    features: [
-      "24/7 crisis hotline",
-      "Rapid response team deployment",
-      "Media relations management",
-      "Stakeholder communications"
-    ],
-    isEmergency: true
-  },
-  {
-    icon: LineChart,
-    title: "Strategic Planning",
-    description: "We develop comprehensive strategies to build and maintain your reputation.",
-    features: [
-      "Reputation management plans",
-      "Crisis prevention strategies",
-      "Brand positioning",
-      "Message development"
-    ]
-  },
-  {
-    icon: Users,
-    title: "Stakeholder Engagement",
-    description: "Building and maintaining strong relationships with key stakeholders.",
-    features: [
-      "Community outreach programs",
-      "Media relationship building",
-      "Government relations",
-      "Internal communications"
-    ]
-  }
-];
+import { approachSectionInfo, approachData } from '@/lib/data/approachSectionData';
 
 export function ApproachSection({ id }: { id?: string }) {
   const isMobile = useIsMobile();
@@ -66,17 +18,15 @@ export function ApproachSection({ id }: { id?: string }) {
           className="text-center mb-16"
         >
           <h2 className={`${isMobile ? 'text-3xl' : 'text-4xl'} font-bold text-foreground mb-6`}>
-            Our Approach
+            {approachSectionInfo.heading}
           </h2>
           <p className={`${isMobile ? 'text-lg' : 'text-xl'} text-muted-foreground max-w-3xl mx-auto px-4`}>
-          Our approach is grounded in deep analysis and strategic foresight. We partner closely with clients to understand their unique 
-          challenges and objectives, crafting bespoke communication strategies that are both proactive and adaptive. 
-          Rigorous planning and execution ensure measurable results and alignment with your core goals.
+            {approachSectionInfo.description}
           </p>
         </motion.div>
 
         <div className={`${isMobile ? 'flex flex-col space-y-4 px-4' : 'grid grid-cols-4 gap-4'} max-w-7xl mx-auto`}>
-          {approaches.map((approach, index) => (
+          {approachData.map((approach, index) => (
             <motion.div
               key={approach.title}
               initial={{ opacity: 0, y: 20 }}

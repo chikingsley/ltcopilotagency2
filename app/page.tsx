@@ -8,25 +8,25 @@ import { IndustriesSection } from "@/components/containers/4-industries-we-serve
 import { CrisisCtaSection } from "@/components/containers/5-crisis-cta-section/crisis-cta-section";
 import { CenteredSeparator } from "@/components/ui/centered-separator";
 import { Header } from "@/components/containers/1-hero-section/header";
-import { CrisisPill } from "@/components/ui/crisis-pill";
-import { useIsMobile } from "@/hooks/use-mobile";
+// import { CrisisPill } from "@/components/ui/crisis-pill";
+// import { useIsMobile } from "@/hooks/use-mobile";
 import { ProfileForm } from "@/components/containers/6-form/form-section";
 
 export default function Home() {
-  const isMobile = useIsMobile();
+  // const isMobile = useIsMobile();
   return (
     <div className="min-h-screen">
-      <div className="flex justify-center pt-8">
+      {/* <div className="flex justify-center pt-8">
         <CrisisPill
           href="#"
           label={isMobile ? "24/7 Crisis Support" : "24/7 Crisis Management Support Available"}
           announcement="🚨 Crisis Response"
         />
-      </div>
+      </div> */}
       <Header />
-      <div className="pt-10 pb-5">
+      {/* <div className="pt-10 pb-5">
         <CenteredSeparator />
-      </div>
+      </div> */}
       <HeroSection />
       <ServicesSection />
       <CenteredSeparator />

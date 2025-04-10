@@ -53,11 +53,11 @@ const approaches = [
   }
 ];
 
-export function ApproachSection() {
+export function ApproachSection({ id }: { id?: string }) {
   const isMobile = useIsMobile();
 
   return (
-    <section className="bg-background py-20">
+    <section id={id} className="bg-background py-20">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -69,7 +69,9 @@ export function ApproachSection() {
             Our Approach
           </h2>
           <p className={`${isMobile ? 'text-lg' : 'text-xl'} text-muted-foreground max-w-3xl mx-auto px-4`}>
-            A comprehensive strategy combining proactive protection, rapid response, and long-term reputation management.
+          Our approach is grounded in deep analysis and strategic foresight. We partner closely with clients to understand their unique 
+          challenges and objectives, crafting bespoke communication strategies that are both proactive and adaptive. 
+          Rigorous planning and execution ensure measurable results and alignment with your core goals.
           </p>
         </motion.div>
 

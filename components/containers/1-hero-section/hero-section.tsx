@@ -10,6 +10,13 @@ import { CenteredSeparator } from '@/components/ui/centered-separator';
 export function HeroSection() {
   const isMobile = useIsMobile();
 
+  const scrollToSection = (id: string) => { 
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
       <section className="relative flex flex-col">
@@ -34,7 +41,12 @@ export function HeroSection() {
                 When reputation matters most, global leaders from startups to Fortune 500 companies trust CoPilot Agency for strategic communications and crisis management. Available 24/7 for immediate response.
               </p>
               <div className={`${isMobile ? 'flex flex-col space-y-4' : 'flex justify-center space-x-4'}`}>
-                <ActionButton variant="primary" showIcon className={isMobile ? 'w-full justify-center' : ''}>
+                <ActionButton 
+                  variant="primary" 
+                  showIcon 
+                  className={isMobile ? 'w-full justify-center' : ''}
+                  onClick={() => scrollToSection('contact')} 
+                >
                   Schedule Consultation
                 </ActionButton>
               </div>

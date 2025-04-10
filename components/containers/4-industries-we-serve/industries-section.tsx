@@ -47,11 +47,11 @@ const industries = [
   }
 ]
 
-export function IndustriesSection() {
+export function IndustriesSection({ id }: { id?: string }) {
   const isMobile = useIsMobile()
 
   return (
-    <section className="bg-background py-20">
+    <section id={id} className="bg-background py-20">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

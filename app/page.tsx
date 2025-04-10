@@ -5,12 +5,12 @@ import { HeroSection } from "@/components/containers/1-hero-section/hero-section
 import { ServicesSection } from "@/components/containers/2-our-services/services-section";
 import { ApproachSection } from "@/components/containers/3-our-approach/approach-section";
 import { IndustriesSection } from "@/components/containers/4-industries-we-serve/industries-section";
-import { CrisisCtaSection } from "@/components/containers/5-crisis-cta-section/crisis-cta-section";
 import { CenteredSeparator } from "@/components/ui/centered-separator";
 import { Header } from "@/components/containers/1-hero-section/header";
 // import { CrisisPill } from "@/components/ui/crisis-pill";
 // import { useIsMobile } from "@/hooks/use-mobile";
 import { ProfileForm } from "@/components/containers/6-form/form-section";
+import { Footer } from "@/components/containers/7-footer/footer-section";
 
 export default function Home() {
   // const isMobile = useIsMobile();
@@ -28,15 +28,14 @@ export default function Home() {
         <CenteredSeparator />
       </div> */}
       <HeroSection />
-      <ServicesSection />
+      <ServicesSection id="services" />
       <CenteredSeparator />
-      <ApproachSection />
+      <ApproachSection id="approach" />
       <CenteredSeparator />
-      <IndustriesSection />
+      <IndustriesSection id="industries" />
       <CenteredSeparator />
-      <CrisisCtaSection />
-      <ProfileForm />
+      <ProfileForm id="contact" />
+      <Footer />
     </div>
   );
 }
-//#4450F0

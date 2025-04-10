@@ -6,6 +6,7 @@ import { ActionButton } from '@/components/ui/action-button';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Menu } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Button } from '@/components/ui/button';
 
 export function Header() {
   const isMobile = useIsMobile();
@@ -25,52 +26,47 @@ export function Header() {
       transition={{ delay: 0.1 }}
     >
       <nav className="flex items-center justify-between">
-        <div className="flex items-center gap-12">
-          <Image 
-            src="/copilot-og-logo-gold.svg" 
-            alt="CoPilot Agency" 
-            width={150} 
-            height={56} 
-            priority 
-            className="h-12 w-auto cursor-pointer transition-opacity duration-200 hover:opacity-80"
-          />
-          {!isMobile && (
-            <div className="flex items-center gap-8">
-              <button onClick={() => scrollToSection('services')} className="text-sm font-medium text-muted-foreground hover:text-foreground">Our Services</button>
-              <button onClick={() => scrollToSection('approach')} className="text-sm font-medium text-muted-foreground hover:text-foreground">Our Approach</button>
-              <button onClick={() => scrollToSection('industries')} className="text-sm font-medium text-muted-foreground hover:text-foreground">Industries</button>
-            </div>
-          )}
-        </div>
+        <Image 
+          src="/copilot-og-logo-gold.svg" 
+          alt="CoPilot Agency" 
+          width={150} 
+          height={56} 
+          priority 
+          className="h-12 w-auto cursor-pointer transition-opacity duration-200 hover:opacity-80"
+        />
 
-        <div className="flex items-center gap-4">
-          {!isMobile && (
-            <ActionButton variant="primary" showIcon>
+        {!isMobile && (
+          <div className="flex items-center gap-4"> 
+            <Button variant="ghost" onClick={() => scrollToSection('services')} className="text-sm font-medium text-muted-foreground hover:text-foreground">Our Services</Button>
+            <Button variant="ghost" onClick={() => scrollToSection('approach')} className="text-sm font-medium text-muted-foreground hover:text-foreground">Our Approach</Button>
+            <Button variant="ghost" onClick={() => scrollToSection('industries')} className="text-sm font-medium text-muted-foreground hover:text-foreground">Industries</Button>
+            <ActionButton variant="primary" showIcon onClick={() => scrollToSection('contact')}>
               Contact Us
             </ActionButton>
-          )}
-          {isMobile && (
-            <Popover>
-              <PopoverTrigger asChild>
-                <button
-                  className="p-2 hover:bg-accent rounded-lg"
-                >
-                  <Menu className="h-6 w-6" />
-                </button>
-              </PopoverTrigger>
-              <PopoverContent className="w-48">
-                <div className="flex flex-col gap-2 py-2">
-                  <button onClick={() => scrollToSection('services')} className="text-sm font-medium text-muted-foreground hover:text-foreground px-3 py-2 hover:bg-accent rounded-md text-left">Our Services</button>
-                  <button onClick={() => scrollToSection('approach')} className="text-sm font-medium text-muted-foreground hover:text-foreground px-3 py-2 hover:bg-accent rounded-md text-left">Our Approach</button>
-                  <button onClick={() => scrollToSection('industries')} className="text-sm font-medium text-muted-foreground hover:text-foreground px-3 py-2 hover:bg-accent rounded-md text-left">Industries</button>
-                  <ActionButton variant="primary" showIcon className="mt-2">
-                    Contact Us
-                  </ActionButton>
-                </div>
-              </PopoverContent>
-            </Popover>
-          )}
-        </div>
+          </div>
+        )}
+
+        {isMobile && (
+          <Popover>
+            <PopoverTrigger asChild>
+              <button
+                className="p-2 hover:bg-accent rounded-lg"
+              >
+                <Menu className="h-6 w-6" />
+              </button>
+            </PopoverTrigger>
+            <PopoverContent className="w-48">
+              <div className="flex flex-col gap-2 py-2">
+                <Button variant="ghost" onClick={() => scrollToSection('services')} className="text-sm font-medium text-muted-foreground hover:text-foreground px-3 py-2 hover:bg-accent rounded-md text-left justify-start">Our Services</Button> 
+                <Button variant="ghost" onClick={() => scrollToSection('approach')} className="text-sm font-medium text-muted-foreground hover:text-foreground px-3 py-2 hover:bg-accent rounded-md text-left justify-start">Our Approach</Button> 
+                <Button variant="ghost" onClick={() => scrollToSection('industries')} className="text-sm font-medium text-muted-foreground hover:text-foreground px-3 py-2 hover:bg-accent rounded-md text-left justify-start">Industries</Button> 
+                <ActionButton variant="primary" showIcon className="mt-2" onClick={() => scrollToSection('contact')}>
+                  Contact Us
+                </ActionButton>
+              </div>
+            </PopoverContent>
+          </Popover>
+        )}
       </nav>
     </motion.header>
   );

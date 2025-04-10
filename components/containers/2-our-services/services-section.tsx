@@ -215,7 +215,7 @@ export function ServicesSection({ id }: { id?: string }) {
   const isMobile = useIsMobile(); // Get mobile status
   return (
     // Removed top padding (pt-0 implied by pb-20), kept bottom padding
-    <section id={id} className="bg-background pb-20">
+    <section id={id} className="bg-background py-20"> {/* Added py-20 */}
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

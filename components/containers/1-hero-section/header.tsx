@@ -20,9 +20,10 @@ export function Header() {
 
   return (
     <motion.header 
-      className="container mx-auto pt-6 pb-0 px-4"
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
+      /* Adjusted top-0 to top-10 to account for CrisisBanner */
+      className="sticky top-10 z-40 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 container mx-auto px-4 py-4"
+      initial={{ y: -100, opacity: 0 }} 
+      animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.1 }}
     >
       <nav className="flex items-center justify-between">

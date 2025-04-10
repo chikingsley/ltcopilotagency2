@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/ui/theme-provider"
 import { Toaster } from "@/components/ui/toaster";
+import { CrisisBanner } from '@/components/ui/crisis-banner';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -23,8 +24,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     // suppressHydrationWarning is important when forcing theme
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}>
+      {/* Added pt-10 for banner height */}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground pt-10`}>
         <ThemeProvider forcedTheme="dark">
+          <CrisisBanner /> 
           {children}
           <Toaster />
         </ThemeProvider>

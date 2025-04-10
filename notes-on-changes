@@ -1,23 +1,14 @@
-notes
+# Tasks
 
-setup contact page to just be sending an email.
-Name (reqd)
-Company (opt)
-email (reqd)
-phone (opt)
-Message (opt)
+- [ ] Setup contact page with email form
+  - [ ] Required fields: Name, Email
+  - [ ] Optional fields: Company, Phone, Message
+  - [ ] Configure to send emails to klaudija@copilotagency.lt
 
-send email to klaudija@copilotagency.lt
+- [ ] Design updates
+  - [ ] Change yellow color to match logo
+  - [ ] Make approach section responsive
+  - [ ] Improve service dropdowns (consider 2-column layout)
 
-change yellow to same yellow as logo
-
-Our Services
--> Strategic Communication first
-
-make our approach section responsive
-
-make the dropdowns in our services better (maybe 2 columns)
-
-industries section
--> financial servcices 2nd, the ngoverment, then legal, then technology, then the rest
-
+- [ ] Content organization
+  - [ ] Reorder "Our Services" to put Strategic Communication first

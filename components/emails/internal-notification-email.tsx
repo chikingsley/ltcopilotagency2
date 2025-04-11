@@ -17,6 +17,7 @@ interface InternalNotificationEmailProps {
   company?: string;
   industry?: string;
   message: string;
+  consent: boolean;
 }
 
 export const InternalNotificationEmail: React.FC<Readonly<InternalNotificationEmailProps>> = ({ 
@@ -25,7 +26,8 @@ export const InternalNotificationEmail: React.FC<Readonly<InternalNotificationEm
   email,
   company,
   industry,
-  message 
+  message,
+  consent 
 }) => (
   <Html>
     <Head />
@@ -43,6 +45,8 @@ export const InternalNotificationEmail: React.FC<Readonly<InternalNotificationEm
         <Hr style={hr} />
         <Heading style={messageHeading}>Message:</Heading>
         <Text style={paragraph}>{message}</Text>
+        <Hr style={hr} />
+        <Text style={details}><strong>Consent Given:</strong> {consent ? 'Yes' : 'No'}</Text>
       </Container>
     </Body>
   </Html>

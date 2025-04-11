@@ -7,8 +7,9 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { Loader2 } from 'lucide-react';
 import { industries } from '@/lib/data/industriesSectionData';
 import { formSectionData } from '@/lib/data/formSectionData';
-
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 import {
   Form,
   FormControl,
@@ -43,6 +44,9 @@ const profileFormSchema = z.object({
   message: z.string().min(10, {
     message: "Message must be at least 10 characters.",
   }),
+  consent: z.boolean().refine((val) => val === true, {
+    message: "You must consent to being contacted.",
+  }),
 });
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
@@ -55,6 +59,7 @@ const defaultValues: Partial<ProfileFormValues> = {
   company: '',
   industry: '',
   message: '',
+  consent: false,
 };
 
 export function ProfileForm({ id }: { id?: string }) {
@@ -235,6 +240,31 @@ export function ProfileForm({ id }: { id?: string }) {
                     />
                   </FormControl>
                   <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="consent"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow col-span-1 md:col-span-2">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                      id="consent-checkbox"
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <Label
+                      htmlFor="consent-checkbox"
+                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    >
+                      I consent to the processing of my personal data in accordance with the <a href="/privacy-policy" className="text-primary hover:underline">Privacy Policy</a>. I understand that CoPilot Agency will use the information provided to respond to my inquiry and may contact me via email, phone, or messaging. I can withdraw my consent at any time by contacting privacy@copilotagency.com.
+                    </Label>
+                    <FormMessage />
+                  </div>
                 </FormItem>
               )}
             />

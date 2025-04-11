@@ -13,6 +13,7 @@ interface RequestBody {
   company?: string;
   industry?: string;
   message: string;
+  consent: boolean;
 }
 
 export async function POST(request: Request) {
@@ -24,10 +25,11 @@ export async function POST(request: Request) {
       email,
       company,
       industry,
-      message
+      message,
+      consent
     } = body;
 
-    if (!firstName || !lastName || !email || !message) {
+    if (!firstName || !lastName || !email || !message || consent !== true) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
@@ -42,6 +44,7 @@ export async function POST(request: Request) {
         company,
         industry,
         message,
+        consent,
       }) as React.ReactElement,
     });
 

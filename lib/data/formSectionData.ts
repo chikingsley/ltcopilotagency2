@@ -28,6 +28,7 @@ export interface FormSectionData {
       descriptionUnexpected: string; // Unexpected error message
     };
   };
+  consentLabel: string; // Added for opt-in checkbox
 }
 
 export const formSectionData: FormSectionData = {
@@ -58,4 +59,5 @@ export const formSectionData: FormSectionData = {
       descriptionUnexpected: "An unexpected error occurred. Please try again later.",
     },
   },
+  consentLabel: "I consent to the processing of my personal data in accordance with the Privacy Policy. I understand that CoPilot Agency will use the information provided to respond to my inquiry and may contact me via email, phone, or messaging. I can withdraw my consent at any time by contacting privacy@copilotagency.com.",
 };

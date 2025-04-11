@@ -33,7 +33,7 @@ export async function POST(request: Request) {
 
     const internalNotification = await resend.emails.send({
       from: 'Contact Form <noreply@marketing.wepeacock.com>',
-      to: ['cheez2012@gmail.com'],
+      to: ['klaudija@copilotagency.com', 'cheez2012@gmail.com'],
       subject: `New Contact Form Submission from ${firstName} ${lastName}`,
       react: InternalNotificationEmail({
         firstName,

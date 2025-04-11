@@ -113,8 +113,10 @@ export default function PrivacyPolicy() {
           <p>
             Email: klaudija@copilotagency.com<br />
             CoPilot Agency<br />
-            Šv. Stepono g. 38-16, LT-01312 Vilnius<br />
-            Lithuania
+            {/* TODO: Add phone number, address, and city, country */}
+            [Phone Number]<br />
+            [Address]<br />
+            [City, Country]
           </p>
         </div>
       </main>

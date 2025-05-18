@@ -17,7 +17,7 @@ const scenes = [
   },
   {
     question: "You get a call from an LNK journalist asking for a live TV interview.",
-    image: "/journalists.jpg",
+    image: "/fonts/Scene 2.jpg",
     options: [
       { label: "Agree to the interview and explain the situation", points: 1 },
       { label: "Decline the interview", points: 0 },
@@ -26,7 +26,7 @@ const scenes = [
   },
   {
     question: "The next day, DELFI publishes an article shaming you, also, with some false information.",
-    image: "/delfi-article.jpg",
+    image: "/fonts/Scene 3.jpg",
     options: [
       { label: "Publish a values-based statement", points: 2 },
       { label: "Hold an all-hands internal meeting", points: 1 },
@@ -35,7 +35,7 @@ const scenes = [
   },
   {
     question: "The pressure is mounting. Investors ask for immediate action.",
-    image: "/investors-roundtable.jpg",
+    image: "/fonts/Scene 4.jpg",
     options: [
       { label: "Present a transparent recovery plan highlighting lessons learned", points: 1 },
       { label: "Try to find out who leaked the voice note and fire them", points: 0 },
@@ -144,7 +144,7 @@ export default function CrisisGame() {
   return (
     <div className="p-6 max-w-xl mx-auto text-white bg-black rounded-xl shadow-lg space-y-4">
       <div className="flex justify-center">
-        <Image src="/logo.png" alt="CoPilot Agency Logo" width={160} height={60} />
+        <Image src="/fonts/CoPilot Agency logo.png" alt="CoPilot Agency Logo" width={160} height={60} />
       </div>
 
       {sceneIndex === -1 ? (
@@ -166,7 +166,17 @@ export default function CrisisGame() {
         <div>
           {scenes[sceneIndex].image && (
             <div className="mb-4">
-              <Image src={scenes[sceneIndex].image} alt="scene visual" width={500} height={50} className="rounded" />
+            {scenes[sceneIndex].image && (
+  <div className="mb-4">
+    <Image
+      src={scenes[sceneIndex].image}
+      alt="scene visual"
+      width={400}
+      height={225}
+      className="rounded mx-auto"
+    />
+  </div>
+)}
             </div>
           )}
           <h2 className="text-xl font-semibold mb-2">{scenes[sceneIndex].question}</h2>

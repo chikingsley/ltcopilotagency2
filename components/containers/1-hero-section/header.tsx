@@ -7,10 +7,11 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { Menu } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
-
+import { useRouter } from 'next/navigation';
 export function Header() {
   const isMobile = useIsMobile();
 
+const router = useRouter();
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -38,7 +39,7 @@ export function Header() {
         {!isMobile && (
           <div className="flex items-center gap-4"> 
             <Button variant="ghost" onClick={() => scrollToSection('services')} className="text-sm font-medium text-muted-foreground hover:text-foreground">Our Services</Button>
-            <Button variant="ghost" onClick={() => scrollToSection('approach')} className="text-sm font-medium text-muted-foreground hover:text-foreground">Our Approach</Button>
+            <Button variant="ghost" onClick={() => router.push('/Game')} className="text-sm font-medium text-muted-foreground hover:text-foreground">Crisis Game</Button>
             <Button variant="ghost" onClick={() => scrollToSection('industries')} className="text-sm font-medium text-muted-foreground hover:text-foreground">Industries</Button>
             <ActionButton variant="primary" showIcon onClick={() => scrollToSection('contact')}>
               Contact Us

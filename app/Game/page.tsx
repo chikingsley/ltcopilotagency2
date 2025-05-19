@@ -16,7 +16,7 @@ const scenes = [
     ],
   },
   {
-    question: "You get a call from an LNK journalist asking for a live TV interview.",
+    question: "You get a call from a journalist asking for a live TV interview.",
     image: "/fonts/Scene 2.jpg",
     options: [
       { label: "Agree to the interview and explain the situation", points: 1 },
@@ -25,20 +25,20 @@ const scenes = [
     ],
   },
   {
-    question: "The next day, DELFI publishes an article shaming you, also, with some false information.",
+    question: "The next day, major newspaper publishes an article shaming you, also, with some false information.",
     image: "/fonts/Scene 3.jpg",
     options: [
-      { label: "Publish a values-based statement", points: 2 },
+      { label: "Publish a public statement", points: 2 },
       { label: "Hold an all-hands internal meeting", points: 1 },
       { label: "Ask the legal team to issue a correction demand", points: 0 },
     ],
   },
   {
-    question: "The pressure is mounting. Investors ask for immediate action.",
+    question: "The pressure is mounting, company stock is down. Investors ask for immediate action.",
     image: "/fonts/Scene 4.jpg",
     options: [
       { label: "Present a transparent recovery plan highlighting lessons learned", points: 1 },
-      { label: "Try to find out who leaked the voice note and fire them", points: 0 },
+      { label: "Try to find out who leaked the voice note and ask to apologise", points: 0 },
       { label: "Call CoPilot Agency to lead recovery.", points: 2 },
     ],
   },
@@ -46,25 +46,25 @@ const scenes = [
 
 const outcomes = [
   {
-    title: "Hold My Beer",
+    title: "Edgewalker",
     description:
       "You dove into the crisis with fearless energy and a ‘let’s do this’ spirit. While that bravado turned heads, it also stirred up a few waves. But even the boldest leaders benefit from reflection. In crisis management, calmness and caution often win the war.",
     gift:
-      "We’re gifting you a free 30-minute consultation on crisis recovery and reputation management—because your courage deserves a solid strategy behind it.",
+      "We’re gifting you a free consultation — let’s talk about your goals and challenges.",
   },
   {
     title: "Bold Firefighter",
     description:
       "You tackled the crisis head-on with boldness and grit—which takes serious courage. Sure, a little smoke escaped, but your instinct to act is exactly what real leaders are made of. With a touch more strategy and refinement, you’re well on your way to mastering calm under pressure.",
     gift:
-      "We’re offering a free 30-minute consultation on crisis communication strategy—because great instincts deserve smart backup.",
+      "We’re gifting you a free consultation — let’s talk about your goals and challenges.",
   },
   {
     title: "Crisis Commander",
     description:
       "You navigated the crisis like a seasoned sea captain—steady hands, sharp eyes, and a clear course. Your transparency and strategic thinking turned turbulence into opportunity. With skills like these, you should be sharing your leadership wisdom far and wide.",
     gift:
-      "We’re gifting you a free 30-minute consultation on leadership personal branding to help you amplify your voice and grow your influence even further.",
+      "We’re gifting you a free consultation — let’s talk about your goals and challenges.",
   },
 ];
 
@@ -99,6 +99,33 @@ export default function CrisisGame() {
   const [loading, setLoading] = useState(false);
   const [reaction, setReaction] = useState("");
   const [isReacting, setIsReacting] = useState(false);
+  const [email, setEmail] = useState("");
+
+  const handleEmailSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!email) return;
+
+    try {
+      const res = await fetch("https://sheetdb.io/api/v1/ldip3p3wsw6zt", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data: { Email: email } }),
+      });
+
+      if (res.ok) {
+        setEmail("");
+        alert("Thanks! We'll be in touch.");
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      console.error("Email submission error:", err);
+      alert("Something went wrong. Please try again.");
+    }
+  };
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -126,7 +153,7 @@ export default function CrisisGame() {
           setShowResult(true);
         }, 4000);
       }
-    }, 2000);
+    }, 3500);
   };
 
   const formatTime = (s: number) => {
@@ -200,21 +227,54 @@ export default function CrisisGame() {
           <div className="text-yellow-400 font-semibold text-lg mt-4">{getOutcome().gift}</div>
 
           {countdown > 0 ? (
-            <div className="mt-4 text-sm">
-              ⏳ Book your free consultation in the next <strong>{formatTime(countdown)}</strong> minutes:
-              <div className="mt-2">
-                <Link
-                  href="https://doodle.com/meeting/participate/id/azYNqn7e"
-                  target="_blank"
-                  className="inline-block mt-2 px-6 py-3 bg-yellow-400 text-black font-semibold rounded-lg hover:bg-yellow-300"
-                >
-                  Book Now
-                </Link>
-              </div>
-            </div>
-          ) : (
-            <div className="text-red-400">⏱️ Time’s up! But feel free to reach out anyway 😉</div>
-          )}
+  <div className="mt-4 text-sm">
+    <Link
+      href="https://doodle.com/meeting/participate/id/azYNqn7e"
+      target="_blank"
+      className="inline-block mb-2 px-8 py-4 text-lg font-bold bg-yellow-400 text-black rounded-xl hover:bg-yellow-300 transition"
+    >
+      Book Now
+    </Link>
+    <div>
+      ⏳ Book your free consultation in the next <strong>{formatTime(countdown)}</strong> minutes.
+    </div>
+    <div className="mt-6 text-sm text-white text-center">
+  <p className="mb-2">Or drop your email and let's keep in touch!</p>
+  <form
+    onSubmit={async (e) => {
+      e.preventDefault();
+      if (email) {
+        await fetch("https://sheetdb.io/api/v1/ldip3p3wsw6zt", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ data: { email } }),
+        });
+        alert("Thanks! Talk to you soon.");
+        setEmail(""); // clear field
+      }
+    }}
+    className="space-y-2"
+  >
+    <input
+      type="email"
+      required
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      placeholder="Enter your email"
+      className="w-full p-3 rounded-lg text-black"
+    />
+   <button
+  onClick={handleEmailSubmit}
+  className="mt-2 px-4 py-1.5 text-sm bg-white text-black font-medium rounded hover:bg-gray-200"
+>
+ Done 
+</button>
+  </form>
+</div>
+  </div>
+) : (
+  <div className="text-red-400">⏱️ Time’s up! But feel free to reach out anyway 😉</div>
+)}
         </div>
       )}
     </div>

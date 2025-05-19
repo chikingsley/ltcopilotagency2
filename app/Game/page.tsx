@@ -48,23 +48,23 @@ const outcomes = [
   {
     title: "Hold My Beer",
     description:
-      "You dove into the crisis with fearless energy and a ‘let’s do this’ spirit. While that bravado turned heads, it also stirred up a few waves. But even the boldest leaders benefit from reflection. In crisis management, **calmness and caution often win the war.**",
+      "You dove into the crisis with fearless energy and a ‘let’s do this’ spirit. While that bravado turned heads, it also stirred up a few waves. But even the boldest leaders benefit from reflection. In crisis management, calmness and caution often win the war.",
     gift:
-      "We’re gifting you a **free 30-minute consultation** on crisis recovery and reputation management—because your courage deserves a solid strategy behind it.",
+      "We’re gifting you a free 30-minute consultation on crisis recovery and reputation management—because your courage deserves a solid strategy behind it.",
   },
   {
     title: "Bold Firefighter",
     description:
       "You tackled the crisis head-on with boldness and grit—which takes serious courage. Sure, a little smoke escaped, but your instinct to act is exactly what real leaders are made of. With a touch more strategy and refinement, you’re well on your way to mastering calm under pressure.",
     gift:
-      "We’re offering a **free 30-minute consultation** on crisis communication strategy—because great instincts deserve smart backup.",
+      "We’re offering a free 30-minute consultation on crisis communication strategy—because great instincts deserve smart backup.",
   },
   {
     title: "Crisis Commander",
     description:
       "You navigated the crisis like a seasoned sea captain—steady hands, sharp eyes, and a clear course. Your transparency and strategic thinking turned turbulence into opportunity. With skills like these, you should be sharing your leadership wisdom far and wide.",
     gift:
-      "We’re gifting you a **free 30-minute consultation** on leadership personal branding to help you amplify your voice and grow your influence even further.",
+      "We’re gifting you a free 30-minute consultation on leadership personal branding to help you amplify your voice and grow your influence even further.",
   },
 ];
 

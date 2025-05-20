@@ -193,17 +193,17 @@ export default function CrisisGame() {
         <div>
           {scenes[sceneIndex].image && (
             <div className="mb-4">
-            {scenes[sceneIndex].image && (
-  <div className="mb-4">
-    <Image
-      src={scenes[sceneIndex].image}
-      alt="scene visual"
-      width={400}
-      height={225}
-      className="rounded mx-auto"
-    />
-  </div>
-)}
+              {scenes[sceneIndex].image && (
+                <div className="mb-4">
+                  <Image
+                    src={scenes[sceneIndex].image}
+                    alt="scene visual"
+                    width={400}
+                    height={225}
+                    className="rounded mx-auto"
+                  />
+                </div>
+              )}
             </div>
           )}
           <h2 className="text-xl font-semibold mb-2">{scenes[sceneIndex].question}</h2>
@@ -227,54 +227,54 @@ export default function CrisisGame() {
           <div className="text-yellow-400 font-semibold text-lg mt-4">{getOutcome().gift}</div>
 
           {countdown > 0 ? (
-  <div className="mt-4 text-sm">
-    <Link
-      href="https://doodle.com/meeting/participate/id/azYNqn7e"
-      target="_blank"
-      className="inline-block mb-2 px-8 py-4 text-lg font-bold bg-yellow-400 text-black rounded-xl hover:bg-yellow-300 transition"
-    >
-      Book Now
-    </Link>
-    <div>
-      ⏳ Book your free consultation in the next <strong>{formatTime(countdown)}</strong> minutes.
-    </div>
-    <div className="mt-6 text-sm text-white text-center">
-  <p className="mb-2">Or drop your email and let's keep in touch!</p>
-  <form
-    onSubmit={async (e) => {
-      e.preventDefault();
-      if (email) {
-        await fetch("https://sheetdb.io/api/v1/ldip3p3wsw6zt", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ data: { email } }),
-        });
-        alert("Thanks! Talk to you soon.");
-        setEmail(""); // clear field
-      }
-    }}
-    className="space-y-2"
-  >
-    <input
-      type="email"
-      required
-      value={email}
-      onChange={(e) => setEmail(e.target.value)}
-      placeholder="Enter your email"
-      className="w-full p-3 rounded-lg text-black"
-    />
-   <button
-  onClick={handleEmailSubmit}
-  className="mt-2 px-4 py-1.5 text-sm bg-white text-black font-medium rounded hover:bg-gray-200"
->
- Done 
-</button>
-  </form>
-</div>
-  </div>
-) : (
-  <div className="text-red-400">⏱️ Time’s up! But feel free to reach out anyway 😉</div>
-)}
+            <div className="mt-4 text-sm">
+              <Link
+                href="https://doodle.com/meeting/participate/id/azYNqn7e"
+                target="_blank"
+                className="inline-block mb-2 px-8 py-4 text-lg font-bold bg-yellow-400 text-black rounded-xl hover:bg-yellow-300 transition"
+              >
+                Book Now
+              </Link>
+              <div>
+                ⏳ Book your free consultation in the next <strong>{formatTime(countdown)}</strong> minutes.
+              </div>
+              <div className="mt-6 text-sm text-white text-center">
+                <p className="mb-2">Or drop your email and let&apos;s keep in touch!</p>
+                <form
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    if (email) {
+                      await fetch("https://sheetdb.io/api/v1/ldip3p3wsw6zt", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ data: { email } }),
+                      });
+                      alert("Thanks! Talk to you soon.");
+                      setEmail(""); // clear field
+                    }
+                  }}
+                  className="space-y-2"
+                >
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    className="w-full p-3 rounded-lg text-black"
+                  />
+                  <button
+                    onClick={handleEmailSubmit}
+                    className="mt-2 px-4 py-1.5 text-sm bg-white text-black font-medium rounded hover:bg-gray-200"
+                  >
+                    Done
+                  </button>
+                </form>
+              </div>
+            </div>
+          ) : (
+            <div className="text-red-400">⏱️ Time’s up! But feel free to reach out anyway 😉</div>
+          )}
         </div>
       )}
     </div>

@@ -5,101 +5,152 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const scenes = [
+// Define Conflict Styles
+const CONFLICT_STYLES = {
+  COMPETING: "COMPETING",
+  ACCOMMODATING: "ACCOMMODATING",
+  AVOIDING: "AVOIDING",
+  COLLABORATING: "COLLABORATING",
+  COMPROMISING: "COMPROMISING",
+} as const;
+
+type ConflictStyle = typeof CONFLICT_STYLES[keyof typeof CONFLICT_STYLES];
+
+interface Option {
+  label: string;
+  style: ConflictStyle;
+}
+
+interface Scene {
+  question: string;
+  image: string;
+  options: Option[];
+}
+
+const scenes: Scene[] = [
   {
-    question: "An internal voice message leaks, where you sound dismissive about employee job security.",
-    image: "/fonts/leaked-recording.png",
+    question: "A damaging rumor about your company starts spreading rapidly on social media.",
+    image: "/fonts/leaked-recording.png", // Keeping existing image for now
     options: [
-      { label: "Issue an internal document defending your intent", points: 1 },
-      { label: "Stay silent and hope it will pass", points: 0 },
-      { label: "Publish a public apology explaining the context", points: 2 },
+      { label: "Issue a strong, immediate denial and threaten legal action against anyone spreading false information.", style: CONFLICT_STYLES.COMPETING },
+      { label: "Publicly apologize for the concern caused, even if the rumor is baseless, and promise a full internal review.", style: CONFLICT_STYLES.ACCOMMODATING },
+      { label: "Stay silent and monitor the situation, hoping it dies down on its own.", style: CONFLICT_STYLES.AVOIDING },
+      { label: "Engage with the concerned parties online, offer to discuss their concerns transparently, and share factual information.", style: CONFLICT_STYLES.COLLABORATING },
+      { label: "Release a brief statement acknowledging the rumor, stating it's being looked into, and offer a partial concession or a small corrective action to appease some concerns.", style: CONFLICT_STYLES.COMPROMISING },
     ],
   },
   {
-    question: "You get a call from a journalist asking for a live TV interview.",
-    image: "/fonts/Scene 2.jpg",
+    question: "A key product launch event is met with immediate, harsh public criticism regarding a controversial feature.",
+    image: "/fonts/Scene 2.jpg", // Keeping existing image for now
     options: [
-      { label: "Agree to the interview and explain the situation", points: 1 },
-      { label: "Decline the interview", points: 0 },
-      { label: "Offer to respond in writing", points: 2 },
+      { label: "Defend the feature vigorously and highlight its benefits, dismissing criticisms as misunderstanding.", style: CONFLICT_STYLES.COMPETING },
+      { label: "Immediately announce a rollback of the feature and apologize for the oversight.", style: CONFLICT_STYLES.ACCOMMODATING },
+      { label: "Avoid direct comments on the feature, instead focusing on other positive aspects of the product.", style: CONFLICT_STYLES.AVOIDING },
+      { label: "Acknowledge the criticism, invite user feedback, and propose a workshop to redesign the feature collaboratively.", style: CONFLICT_STYLES.COLLABORATING },
+      { label: "Offer a temporary suspension of the feature while promising to gather feedback for a revised version.", style: CONFLICT_STYLES.COMPROMISING },
     ],
   },
   {
-    question: "The next day, major newspaper publishes an article shaming you, also, with some false information.",
-    image: "/fonts/Scene 3.jpg",
+    question: "An investigative journalist contacts you with evidence of a minor internal wrongdoing and plans to publish a story.",
+    image: "/fonts/Scene 3.jpg", // Keeping existing image for now
     options: [
-      { label: "Publish a public statement", points: 2 },
-      { label: "Hold an all-hands internal meeting", points: 1 },
-      { label: "Ask the legal team to issue a correction demand", points: 0 },
+      { label: "Attempt to discredit the journalist or the evidence, and refuse to cooperate.", style: CONFLICT_STYLES.COMPETING },
+      { label: "Provide the journalist with all requested information and express full cooperation and remorse for any wrongdoing.", style: CONFLICT_STYLES.ACCOMMODATING },
+      { label: "Decline to comment, stating it's an internal matter that is being handled.", style: CONFLICT_STYLES.AVOIDING },
+      { label: "Offer the journalist an exclusive in-depth look at how the company is addressing the wrongdoing and improving processes.", style: CONFLICT_STYLES.COLLABORATING },
+      { label: "Negotiate with the journalist to delay the story in exchange for a commitment to fix the issue and a limited statement.", style: CONFLICT_STYLES.COMPROMISING },
     ],
   },
   {
-    question: "The pressure is mounting, company stock is down. Investors ask for immediate action.",
-    image: "/fonts/Scene 4.jpg",
+    question: "During a live interview, you're blindsided by a very aggressive question from the host that misrepresents your company's actions.",
+    image: "/fonts/Scene 4.jpg", // Keeping existing image for now
     options: [
-      { label: "Present a transparent recovery plan highlighting lessons learned", points: 1 },
-      { label: "Try to find out who leaked the voice note and ask to apologise", points: 0 },
-      { label: "Call CoPilot Agency to lead recovery.", points: 2 },
+      { label: "Challenge the host's premise directly and aggressively correct the misrepresentation on air.", style: CONFLICT_STYLES.COMPETING },
+      { label: "Concede to the host's point to avoid further confrontation on live television.", style: CONFLICT_STYLES.ACCOMMODATING },
+      { label: "Politely sidestep the question and try to redirect the conversation to a different topic.", style: CONFLICT_STYLES.AVOIDING },
+      { label: "Acknowledge the host's perspective, then calmly present facts and offer to provide detailed information off-air.", style: CONFLICT_STYLES.COLLABORATING },
+      { label: "Agree that the question raises valid concerns and promise to look into the matter, while gently correcting the most egregious parts of the misrepresentation.", style: CONFLICT_STYLES.COMPROMISING },
     ],
   },
 ];
 
-const outcomes = [
+interface Outcome {
+  id: ConflictStyle;
+  title: string;
+  description: string;
+  professionalApproach: string; // Kept for future use as per original structure, may align with "gift" later
+  gift?: string; // Optional gift as in original structure
+}
+
+const outcomes: Outcome[] = [
   {
-    title: "Edgewalker",
-    description:
-      "You dove into the crisis with fearless energy and a ‘let’s do this’ spirit. While that bravado turned heads, it also stirred up a few waves. But even the boldest leaders benefit from reflection. In crisis management, calmness and caution often win the war.",
-    gift:
-      "We’re gifting you a free consultation — let’s talk about your goals and challenges.",
+    id: CONFLICT_STYLES.COMPETING,
+    title: "The Competitor",
+    description: "You're someone who tackles conflict head-on, much like a determined leader taking charge. You stand firm on your decisions and aim to achieve your objectives quickly and assertively. While this decisiveness can be vital in a crisis, overusing this style might make you appear dismissive of other viewpoints or escalate tensions. In PR, a highly competitive stance can alienate stakeholders or win a short-term argument while damaging crucial long-term relationships.",
+    professionalApproach: "A PR professional assesses the 'battles' worth fighting. Instead of purely competing, they'd focus on clear, factual communication to correct misinformation, while seeking to de-escalate and protect long-term relationships. The goal is sustainable reputation, not just a short-term win.",
+    gift: "We’re gifting you a free consultation — let’s talk about your goals and challenges.",
   },
   {
-    title: "Bold Firefighter",
-    description:
-      "You tackled the crisis head-on with boldness and grit—which takes serious courage. Sure, a little smoke escaped, but your instinct to act is exactly what real leaders are made of. With a touch more strategy and refinement, you’re well on your way to mastering calm under pressure.",
-    gift:
-      "We’re gifting you a free consultation — let’s talk about your goals and challenges.",
+    id: CONFLICT_STYLES.ACCOMMODATING,
+    title: "The Accommodator",
+    description: "You often prioritize relationships and harmony, choosing to yield to others' needs to resolve conflict smoothly. Your empathetic nature helps in de-escalating situations and building goodwill. However, consistently accommodating can mean your own important concerns are overlooked, potentially leading to solutions that aren't truly sustainable. In a PR crisis, this might mean issuing apologies too quickly or conceding on points that could have been important to defend, which could be perceived as weakness or an admission of guilt.",
+    professionalApproach: "Empathy is key in PR, but a professional avoids unnecessary concessions that imply fault where none exists. They would strategically accommodate valid concerns while firmly upholding the company's integrity and ensuring the narrative remains balanced.",
+    gift: "We’re gifting you a free consultation — let’s talk about your goals and challenges.",
   },
   {
-    title: "Crisis Commander",
-    description:
-      "You navigated the crisis like a seasoned sea captain—steady hands, sharp eyes, and a clear course. Your transparency and strategic thinking turned turbulence into opportunity. With skills like these, you should be sharing your leadership wisdom far and wide.",
-    gift:
-      "We’re gifting you a free consultation — let’s talk about your goals and challenges.",
+    id: CONFLICT_STYLES.AVOIDING,
+    title: "The Avoider",
+    description: "You tend to steer clear of conflict, preferring to withdraw, delay, or sidestep tense situations. This approach can be useful when issues are minor or when emotions need to cool down. But, consistently avoiding important conflicts can lead to unresolved problems that fester and grow larger over time. In PR crisis management, avoiding the issue might be seen as evasion or a lack of transparency, damaging public trust and allowing rumors to spread unchecked.",
+    professionalApproach: "While strategic silence can be a tool, PR professionals know that avoiding a brewing crisis often fuels speculation and damages trust. They advocate for proactive communication, controlling the narrative by addressing issues transparently and outlining a clear path forward.",
+    gift: "We’re gifting you a free consultation — let’s talk about your goals and challenges.",
+  },
+  {
+    id: CONFLICT_STYLES.COLLABORATING,
+    title: "The Collaborator",
+    description: "You view conflict as an opportunity to find a 'win-win' solution that addresses everyone's core concerns. You're willing to invest time and effort in open discussions to explore creative, mutually beneficial outcomes. While collaboration often leads to the most robust and lasting solutions, it can be time-consuming and complex. In fast-moving PR crises, the lengthy process of collaboration might sometimes be too slow, or a consensus might be hard to reach, hindering a swift response.",
+    professionalApproach: "Collaboration is often the gold standard in PR. Professionals strive to build bridges, engage in open dialogue with stakeholders, and find mutually beneficial solutions. This approach fosters trust, credibility, and positive long-term relationships.",
+    gift: "We’re gifting you a free consultation — let’s talk about your goals and challenges.",
+  },
+  {
+    id: CONFLICT_STYLES.COMPROMISING,
+    title: "The Compromiser",
+    description: "You seek practical, middle-ground solutions where each party makes some concessions for a quick resolution. This style is about finding a fair and expedient outcome that partially satisfies everyone involved. While compromising can be efficient for resolving issues quickly, the give-and-take might sometimes lead to a solution that doesn't fully address the underlying problem. In PR, a quick compromise might seem like a good fix, but if not carefully considered, it could result in a watered-down message or actions that don't truly satisfy any stakeholder group in the long run.",
+    professionalApproach: "Compromise can be a practical PR tactic, but professionals ensure it aligns with core values and doesn't erode brand integrity. They seek middle ground strategically, ensuring any concession is a well-considered move towards a sustainable and principled resolution.",
+    gift: "We’re gifting you a free consultation — let’s talk about your goals and challenges.",
   },
 ];
 
-const reactions = [
-  [
-    "An internal memo, bold move — but will your team buy it?",
-    "Silence is golden... or is it just suspicious?",
-    "Owning the moment — let’s see how the public responds.",
-  ],
-  [
-    "Live TV? Brave. Hope you brought your media training.",
-    "No comment? Let’s hope silence doesn’t speak too loud.",
-    "Smart. You’ll have time to weigh your words.",
-  ],
-  [
-    "Turning to purpose — a classy (and clever) response.",
-    "You’re going in-house first — let’s see if it holds.",
-    "You lawyered up — just hope it doesn’t backfire.",
-  ],
-  [
-    "Strong pivot — transparency helps calm investors.",
-    "Uh-oh. Retaliation might rattle your internal culture.",
-    "Smart call — you’ve got experienced hands at the wheel.",
-  ],
-];
+
+// New structure for reactions based on ConflictStyle
+const styleReactions: Record<ConflictStyle, string> = {
+  [CONFLICT_STYLES.COMPETING]: "A bold move. Let's see if it asserts your control...",
+  [CONFLICT_STYLES.ACCOMMODATING]: "A conciliatory step. Will it smooth things over?",
+  [CONFLICT_STYLES.AVOIDING]: "Holding back for now. Time will tell if that's a masterstroke or a missed opportunity.",
+  [CONFLICT_STYLES.COLLABORATING]: "Reaching out to connect. This could build some bridges.",
+  [CONFLICT_STYLES.COMPROMISING]: "Looking for middle ground. A practical way to diffuse tension?"
+};
 
 export default function CrisisGame() {
   const [sceneIndex, setSceneIndex] = useState(-1);
-  const [score, setScore] = useState(0);
+  // const [score, setScore] = useState(0); // Old score state, to be replaced
+  const [styleCounts, setStyleCounts] = useState<Record<ConflictStyle, number>>({
+    COMPETING: 0,
+    ACCOMMODATING: 0,
+    AVOIDING: 0,
+    COLLABORATING: 0,
+    COMPROMISING: 0,
+  });
   const [showResult, setShowResult] = useState(false);
   const [countdown, setCountdown] = useState(900);
   const [loading, setLoading] = useState(false);
-  const [reaction, setReaction] = useState("");
-  const [isReacting, setIsReacting] = useState(false);
+  // const [reaction, setReaction] = useState(""); // Reaction state might be removed or adapted
+  // const [isReacting, setIsReacting] = useState(false); // isReacting state might be removed or adapted
   const [email, setEmail] = useState("");
+  // For now, we will remove reaction and isReacting features as they are tied to the old structure.
+  // A simplified reaction could be added later if needed.
+  const [reaction, setReaction] = useState(""); // Keep for now, but content needs to change
+  const [isReacting, setIsReacting] = useState(false); // Keep for now
+
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -135,9 +186,13 @@ export default function CrisisGame() {
     return () => clearInterval(timer);
   }, [showResult, countdown]);
 
-  const handleOptionClick = (points: number, optionIdx: number) => {
-    setScore(score + points);
-    setReaction(reactions[sceneIndex][optionIdx]);
+  const handleOptionClick = (style: ConflictStyle) => {
+    setStyleCounts(prevCounts => ({
+      ...prevCounts,
+      [style]: prevCounts[style] + 1,
+    }));
+
+    setReaction(styleReactions[style]);
     setIsReacting(true);
 
     setTimeout(() => {
@@ -151,9 +206,9 @@ export default function CrisisGame() {
         setTimeout(() => {
           setLoading(false);
           setShowResult(true);
-        }, 4000);
+        }, 4000); // Keep loading simulation
       }
-    }, 3500);
+    }, 3500); // Keep reaction display time
   };
 
   const formatTime = (s: number) => {
@@ -162,10 +217,23 @@ export default function CrisisGame() {
     return `${m}:${sec.toString().padStart(2, "0")}`;
   };
 
-  const getOutcome = () => {
-    if (score <= 3) return outcomes[0];
-    if (score <= 6) return outcomes[1];
-    return outcomes[2];
+  const getOutcome = (): Outcome => {
+    let dominantStyle: ConflictStyle = CONFLICT_STYLES.AVOIDING; // Default
+    let maxCount = 0;
+
+    for (const style in styleCounts) {
+      if (styleCounts[style as ConflictStyle] > maxCount) {
+        maxCount = styleCounts[style as ConflictStyle];
+        dominantStyle = style as ConflictStyle;
+      }
+    }
+
+    // Handle ties: simple tie-breaking, e.g. prefer COLLABORATING, or first encountered (current behavior)
+    // For a more sophisticated tie-breaking, this logic would be expanded.
+    // Example: if (styleCounts[style as ConflictStyle] === maxCount && style === CONFLICT_STYLES.COLLABORATING) dominantStyle = style as ConflictStyle;
+
+    const outcomeResult = outcomes.find(o => o.id === dominantStyle);
+    return outcomeResult || outcomes[0]; // Fallback to the first outcome if something goes wrong
   };
 
   return (
@@ -193,17 +261,13 @@ export default function CrisisGame() {
         <div>
           {scenes[sceneIndex].image && (
             <div className="mb-4">
-              {scenes[sceneIndex].image && (
-                <div className="mb-4">
-                  <Image
-                    src={scenes[sceneIndex].image}
-                    alt="scene visual"
-                    width={400}
-                    height={225}
-                    className="rounded mx-auto"
-                  />
-                </div>
-              )}
+              <Image
+                src={scenes[sceneIndex].image}
+                alt="scene visual"
+                width={400}
+                height={225}
+                className="rounded mx-auto"
+              />
             </div>
           )}
           <h2 className="text-xl font-semibold mb-2">{scenes[sceneIndex].question}</h2>
@@ -212,7 +276,7 @@ export default function CrisisGame() {
               <li key={idx}>
                 <button
                   className="w-full text-left p-3 rounded-lg bg-yellow-400 text-black hover:bg-yellow-300 transition"
-                  onClick={() => handleOptionClick(option.points, idx)}
+                  onClick={() => handleOptionClick(option.style)}
                 >
                   {option.label}
                 </button>
@@ -222,9 +286,19 @@ export default function CrisisGame() {
         </div>
       ) : (
         <div className="space-y-4 text-center">
-          <h2 className="text-2xl font-bold">{getOutcome().title}</h2>
-          <p>{getOutcome().description}</p>
-          <div className="text-yellow-400 font-semibold text-lg mt-4">{getOutcome().gift}</div>
+          <h2 className="text-2xl font-bold">Your Predominant Style: {getOutcome().title}</h2>
+
+          <div className="text-left mt-4">
+            <h3 className="text-lg font-semibold text-yellow-400">Understanding Your Style:</h3>
+            <p className="mt-1">{getOutcome().description}</p>
+          </div>
+
+          <div className="text-left mt-4">
+            <h3 className="text-lg font-semibold text-yellow-400">A Professional PR Perspective:</h3>
+            <p className="mt-1">{getOutcome().professionalApproach}</p>
+          </div>
+
+          {getOutcome().gift && <div className="text-yellow-400 font-semibold text-lg mt-6">{getOutcome().gift}</div>}
 
           {countdown > 0 ? (
             <div className="mt-4 text-sm">
@@ -267,7 +341,7 @@ export default function CrisisGame() {
                     onClick={handleEmailSubmit}
                     className="mt-2 px-4 py-1.5 text-sm bg-white text-black font-medium rounded hover:bg-gray-200"
                   >
-                    Done
+                    Submit
                   </button>
                 </form>
               </div>

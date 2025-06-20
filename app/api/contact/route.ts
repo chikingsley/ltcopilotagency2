@@ -4,7 +4,7 @@ import InternalNotificationEmail from '@/components/emails/internal-notification
 import UserConfirmationEmail from '@/components/emails/user-confirmation-email';
 import React from 'react';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY || "re_dummykey_for_build");
 
 interface RequestBody {
   firstName: string;
